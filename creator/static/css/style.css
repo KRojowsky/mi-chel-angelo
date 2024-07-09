@@ -5,31 +5,115 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
+
+.tiles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; /* Wyśrodkowanie w pionie */
+    gap: 20px;
+    margin: 0 auto; /* Wyśrodkowanie kontenera */
+    max-width: 1200px; /* Maksymalna szerokość kontenera */
+}
+
+.tile {
+    width: calc(20% - 20px); /* Szerokość płytki (20% szerokości kontenera - odstęp) */
+    background-color: #ffffff;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 8px;
+    height: 300px; /* Stała wysokość płytki */
+    overflow: hidden; /* Ukrycie tekstu, który wystaje poza płytkę */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Wyśrodkowanie zawartości w pionie */
+    text-decoration: none; /* Usunięcie podkreślenia dla linków */
+    color: #333333; /* Kolor tekstu */
+}
+
+.tile:hover {
+    background-color: #f0f0f0; /* Zmiana koloru tła po najechaniu */
+}
+
+.tile h2 {
+    margin-bottom: 10px;
+}
+
+.tile p {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.6;
+    flex-grow: 1; /* Elastyczne dopasowanie tekstu w pionie */
+    overflow: hidden; /* Ukrycie tekstu, który wystaje poza płytkę */
+}
+
+@media (max-width: 1023px) {
+    .tile {
+        width: calc(25%);
+    }
+}
+
+@media (max-width: 768px) {
+    .tile {
+        width: calc(50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .tile {
+        width: calc(100%);
+    }
+}
+
+
+
+
+
+
+
+
 
 .header-container {
     width: 100%;
-    text-align: center;
     background: #FFF;
     box-shadow: 0 0 10px 20px rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 10px 0;
 }
 
-.header-container h1 {
+.form-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.form-container form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-button {
     color: #000;
-    margin: 0;
-    font-size: 2rem;
-    padding: 20px 0;
+    text-decoration: none;
+    font-size: 16px;
+    margin-left: 20px;
 }
 
-.header-container form {
-    margin-top: 10px;
+.back-button:hover {
+    text-decoration: underline;
 }
 
 .header-container label {
-    font-size: 1.2rem;
+    font-size: 16px;
     color: #000;
-    margin-right: 10px;
+    font-weight: bold;
 }
 
 .header-container input[type="text"] {
@@ -39,7 +123,7 @@ body {
     border-radius: 4px;
     outline: none;
     width: 200px;
-    background-color: #E3E3E3;
+    background-color: #DBDBDB;
     border: 2px solid #00D4FF;
 }
 
@@ -53,6 +137,24 @@ button[type="submit"] {
     border-radius: 4px;
     border: 1px solid #000;
 }
+
+button[type="submit"]:hover, .generate:hover {
+    background: #FFF;
+    transition: 0.3s;
+}
+
+.generate {
+    background-color: #00D4FF;
+    color: #000;
+    border: none;
+    padding: 9px 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #000;
+    text-decoration: none;
+}
+
 
 .content-container {
     display: flex;
@@ -182,8 +284,42 @@ ul li{
     resize: vertical;
 }
 
-.error {
-    color: red;
+.file-content {
+    margin: 0 auto;
+    color: #FFF;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.file-content textarea {
+    height: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    resize: vertical;
+}
+
+.message {
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 5px;
     text-align: center;
-    margin-top: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    font-weight: bold;
+    font-size: 20px;
+    border: 1px solid #000;
+}
+
+.error {
+    color: #FF0000;
+}
+
+.success {
+    color: #32CD32;
 }

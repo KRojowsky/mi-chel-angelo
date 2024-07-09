@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Landing Page Creator</title>
+    <title>Landing Page Generator</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'img/logo.jpg' %}">
     <script>
@@ -23,12 +23,19 @@
 </head>
 <body>
     <div class="header-container">
-        <h1>Kreator landing page'y</h1>
-        <form action="{% url 'product_details' %}" method="get">
-            <label for="product_id">ID Produktu:</label>
-            <input type="text" id="product_id" name="product_id" required>
-            <button type="submit">Szukaj</button>
-        </form>
+        <a href="{% url 'widget' %}" class="back-button">&#x2190; Wróć do menu</a>
+        <div class="form-container">
+            <form action="{% url 'product_details' %}" method="get">
+                <label for="product_id">ID Produktu:</label>
+                <input type="text" id="product_id" name="product_id" required>
+                <button type="submit">Szukaj</button>
+            </form>
+            <form method="post" action="{% url 'clear_file_content' %}" class="clear-form">
+                {% csrf_token %}
+                <button type="submit">Wyczyść HTML</button>
+            </form>
+            <a href="{% url 'display_file_content' %}" class="generate">Kod HTML</a>
+        </div>
     </div>
     <div class="content-container">
         {% if content %}
@@ -87,16 +94,27 @@
         {% endif %}
         {% if product_html %}
         <div class="html-editor">
-            <form method="post">
+            <form method="post" action="{% url 'add_to_file' %}">
                 {% csrf_token %}
                 <textarea id="product_html" name="product_html">{{ product_html }}</textarea>
+                <button type="submit">Dodaj</button>
             </form>
-
         </div>
         {% endif %}
     </div>
+
+    {% if file_content %}
+        <div class="file-content">
+            <h3>Zawartość pliku HTML:</h3>
+            <textarea>{{ file_content|safe }}</textarea>
+        </div>
+    {% endif %}
+
     {% if error_message %}
-        <p class="error">{{ error_message }}</p>
+        <p class="message error">{{ error_message }}</p>
+    {% endif %}
+    {% if success_message %}
+        <p class="message success">{{ success_message }}</p>
     {% endif %}
 </body>
 </html>

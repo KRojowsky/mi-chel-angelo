@@ -1,10 +1,16 @@
 from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
+import os
+from django.http import HttpResponseRedirect
 
 
 def widget(request):
-    return render(request, 'creator/index.html')
+    return render(request, 'creator/widget.html')
+
+
+def landing_page_creator(request):
+    return render(request, 'creator/landing-page-creator.html')
 
 
 def product_details(request):
@@ -76,7 +82,7 @@ def product_details(request):
                 '''
 
                 if convert:
-                    return render(request, 'creator/index.html', {
+                    return render(request, 'creator/landing-page-creator.html', {
                         'product_html': product_html,
                         'content': content,
                         'selected_category': selected_category,
@@ -85,7 +91,7 @@ def product_details(request):
                         'custom_name': custom_name
                     })
 
-                return render(request, 'creator/index.html', {
+                return render(request, 'creator/landing-page-creator.html', {
                     'content': content,
                     'selected_category': selected_category,
                     'image_url': image_url,
@@ -95,6 +101,40 @@ def product_details(request):
 
             except requests.exceptions.RequestException as e:
                 error_message = f'Błąd podczas pobierania strony: {str(e)}'
-                return render(request, 'creator/index.html', {'error_message': error_message})
+                return render(request, 'creator/landing-page-creator.html', {'error_message': error_message})
 
-    return render(request, 'creator/index.html')
+    return render(request, 'creator/landing-page-creator.html')
+
+
+def add_to_file(request):
+    if request.method == 'POST':
+        product_html = request.POST.get('product_html', '')
+        file_path = os.path.join('opinions.txt')  # Update this path
+        with open(file_path, 'a') as file:
+            file.write(product_html + "\n")
+        success_message = 'Kod HTML poprawnie utworzony'
+        return render(request, 'creator/landing-page-creator.html', {'success_message': success_message})
+
+    return render(request, 'creator/landing-page-creator.html')
+
+
+def display_file_content(request):
+    file_path = os.path.join('opinions.txt')
+    try:
+        with open(file_path, 'r') as file:
+            file_content = file.read()
+            wrapped_content = f'<div class="container lprow" style="">\n{file_content}</div>'
+            return render(request, 'creator/landing-page-creator.html', {'file_content': wrapped_content})
+    except FileNotFoundError:
+        error_message = 'Plik opinions.txt nie istnieje.'
+        return render(request, 'creator/landing-page-creator.html', {'error_message': error_message})
+
+
+def clear_file_content(request):
+    file_path = os.path.join('opinions.txt')
+    try:
+        open(file_path, 'w').close()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    except Exception as e:
+        error_message = f'Błąd podczas czyszczenia pliku: {str(e)}'
+        return render(request, 'creator/landing-page-creator.html', {'error_message': error_message})
