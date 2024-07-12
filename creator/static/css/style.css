@@ -1,6 +1,6 @@
 body {
     font-family: Tahoma, sans-serif;
-    background: #000;
+    background: #333333;
     color: #000;
     margin: 0;
     display: flex;
@@ -43,7 +43,7 @@ body {
 
 .tile:hover {
     transition: 0.2s;
-    background: #343434;
+    background: #000;
 }
 
 .tile img {
@@ -278,6 +278,7 @@ ul li{
 
 .form-group label {
     display: block;
+    color: #FFF;
 }
 
 .form-group select,
