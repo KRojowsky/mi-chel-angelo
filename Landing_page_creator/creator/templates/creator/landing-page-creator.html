@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page Generator</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.jpg' %}">
+    <script>
+        function toggleNewCategory() {
+            var categorySelect = document.getElementById('category');
+            var newCategoryInput = document.getElementById('new_category_container');
+            if (categorySelect.value === 'Inna') {
+                newCategoryInput.style.display = 'block';
+            } else {
+                newCategoryInput.style.display = 'none';
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            toggleNewCategory();
+        });
+    </script>
+</head>
+<body>
+    <div class="header-container">
+        <a href="{% url 'widget' %}" class="back-button">&#x2190; Wróć do menu</a>
+        <div class="form-container">
+            <form action="{% url 'product_details' %}" method="get">
+                <label for="product_id">ID Produktu:</label>
+                <input type="text" id="product_id" name="product_id" required>
+                <button type="submit">Szukaj</button>
+            </form>
+            <form method="post" action="{% url 'clear_file_content' %}" class="clear-form">
+                {% csrf_token %}
+                <button type="submit">Wyczyść HTML</button>
+            </form>
+            <a href="{% url 'display_file_content' %}" class="generate">Kod HTML</a>
+        </div>
+    </div>
+    <div class="content-container">
+        {% if content %}
+        <div class="widget">
+            <p>
+                <img src="{{ image_url }}" alt="Zdjęcie produktu">
+            </p>
+            <ul class="product-info">
+                <li>{{ selected_category }}</li>
+                {% for item in content %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            <div class="buy">Kup teraz</div>
+        </div>
+        <div class="arrow-container">
+            <form method="get" action="{% url 'product_details' %}" class="widget-category">
+                <input type="hidden" name="product_id" value="{{ product_id }}">
+                <div class="form-group">
+                    <label for="custom_name">Nazwa:</label>
+                    <input type="text" id="custom_name" name="custom_name" value="{{ custom_name }}">
+                </div>
+                <div class="form-group">
+                    <label for="category">Kategoria:</label>
+                    <select id="category" name="category" required onchange="toggleNewCategory()">
+                        <option value="">Wybierz kategorię...</option>
+                        <option value="Smartfon" {% if selected_category == "Smartfon" %}selected{% endif %}>Smartfon</option>
+                        <option value="Telewizor" {% if selected_category == "Telewizor" %}selected{% endif %}>Telewizor</option>
+                        <option value="Laptop" {% if selected_category == "Laptop" %}selected{% endif %}>Laptop</option>
+                        <option value="Tablet" {% if selected_category == "Tablet" %}selected{% endif %}>Tablet</option>
+                        <option value="Odtwarzacz" {% if selected_category == "Odtwarzacz" %}selected{% endif %}>Odtwarzacz</option>
+                        <option value="Frytownica beztłuszczowa" {% if selected_category == "Frytownica beztłuszczowa" %}selected{% endif %}>Frytownica beztłuszczowa</option>
+                        <option value="Czajnik" {% if selected_category == "Czajnik" %}selected{% endif %}>Czajnik</option>
+                        <option value="Hulajnoga" {% if selected_category == "Hulajnoga" %}selected{% endif %}>Hulajnoga</option>
+                        <option value="Odkurzacz ręczny" {% if selected_category == "Odkurzacz ręczny" %}selected{% endif %}>Odkurzacz ręczny</option>
+                        <option value="Odkurzacz automatyczny" {% if selected_category == "Odkurzacz automatyczny" %}selected{% endif %}>Odkurzacz automatyczny</option>
+                        <option value="Oczyszczacz powietrza" {% if selected_category == "Oczyszczacz powietrza" %}selected{% endif %}>Oczyszczacz powietrza</option>
+                        <option value="Smartband" {% if selected_category == "Smartband" %}selected{% endif %}>Smartband</option>
+                        <option value="Smartwatch" {% if selected_category == "Smartwatch" %}selected{% endif %}>Smartwatch</option>
+                        <option value="Słuchawki bezprzewodowe" {% if selected_category == "Słuchawki bezprzewodowe" %}selected{% endif %}>Słuchawki bezprzewodowe</option>
+                        <option value="Blender" {% if selected_category == "Blender" %}selected{% endif %}>Blender</option>
+                        <option value="Suszarka do włosów" {% if selected_category == "Suszarka do włosów" %}selected{% endif %}>Suszarka do włosów</option>
+                        <option value="Kamera domowa" {% if selected_category == "Kamera domowa" %}selected{% endif %}>Kamera domowa</option>
+                        <option value="Kamera zewnętrzna" {% if selected_category == "Kamera zewnętrzna" %}selected{% endif %}>Kamera zewnętrzna</option>
+                        <option value="Kamera solarna" {% if selected_category == "Kamera solarna" %}selected{% endif %}>Kamera solarna</option>
+                        <option value="Inna" {% if selected_category == "Inna" %}selected{% endif %}>Inna</option>
+                    </select>
+                    <div id="new_category_container" style="display:none;">
+                        <input type="text" id="new_category" name="new_category" placeholder="Wpisz nową kategorię" value="{% if selected_category == 'Inna' %}{{ new_category }}{% endif %}">
+                    </div>
+                </div>
+                <input type="hidden" name="convert" value="true">
+                <button class="convert" type="submit">Konwertuj &#8594;</button>
+            </form>
+        </div>
+        {% endif %}
+        {% if product_html %}
+        <div class="html-editor">
+            <form method="post" action="{% url 'add_to_file' %}">
+                {% csrf_token %}
+                <textarea id="product_html" name="product_html">{{ product_html }}</textarea>
+                <button type="submit">Dodaj</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+    {% if file_content %}
+        <div class="file-content">
+            <h3>Zawartość pliku HTML:</h3>
+            <textarea>{{ file_content|safe }}</textarea>
+        </div>
+    {% endif %}
+
+    {% if error_message %}
+        <p class="message error">{{ error_message }}</p>
+    {% endif %}
+    {% if success_message %}
+        <p class="message success">{{ success_message }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MIangelo</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.jpg' %}">
+</head>
+<body>
+    <div class="page-content">
+        <div class="tiles-container">
+            <a href="{% url 'landing_page_creator' %}" class="tile">
+                <h2>Generator landing page'y</h2>
+                <img src="{% static 'img/menu.png' %}" alt="Generator landing page'y">
+            </a>
+
+            <a href="https://mroznyhipis.pl/Mi/DescriptionGenerator2/" class="tile">
+                <h2>Kreator opisów produktów</h2>
+                <img src="{% static 'img/description.png' %}" alt="Kreator opisów produktów">
+            </a>
+
+            <a href="https://6691141d46f724009950ddbf--effortless-banoffee-ed8958.netlify.app/" class="tile">
+                <h2>Kalkulator</h2>
+                <img src="{% static 'img/calculator.png' %}" alt="Kalkulator">
+            </a>
+
+            <a href="#" class="tile">
+                <h2></h2>
+                <img src="#" alt="">
+            </a>
+
+            <a href="#" class="tile">
+                <h2></h2>
+                <img src="#" alt="">
+            </a>
+
+            <a href="#" class="tile">
+                <h2></h2>
+                <img src="#" alt="">
+            </a>
+        </div>
+    </div>
+</body>
+</html>

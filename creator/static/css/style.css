@@ -1,0 +1,351 @@
+body {
+    font-family: Tahoma, sans-serif;
+    background: #000;
+    color: #000;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-content {
+    font-family: Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98.6vh;
+    margin: 0;
+    padding: 0;
+    width:100%;
+}
+
+.tiles-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.tile {
+    flex: 1 1 calc(25% - 6px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    color: #FFF;
+    height: calc(50% - 6px);
+    margin: 1px;
+    padding: 5px;
+}
+
+.tile:hover {
+    transition: 0.2s;
+    background: #343434;
+}
+
+.tile img {
+    max-width: 50%;
+    max-height: 50%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.tile h2 {
+    font-family: Courier New;
+    margin-bottom: 75px;
+    text-transform: uppercase;
+    font-size: 20px;
+    letter-spacing: .7px;
+}
+
+.tile p {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+    .tile {
+        flex: 1 1 calc(33.333% - 6px); /* 3 tiles per row, minus margin */
+        height: calc(33.333% - 6px); /* Adjust height to ensure no gaps */
+    }
+}
+
+@media (max-width: 768px) {
+    .tile {
+        flex: 1 1 calc(50% - 6px); /* 2 tiles per row, minus margin */
+        height: calc(50% - 6px); /* Adjust height to ensure no gaps */
+    }
+}
+
+@media (max-width: 480px) {
+    .tile {
+        flex: 1 1 calc(100% - 6px); /* 1 tile per row, minus margin */
+        height: calc(50% - 6px); /* Adjust height to ensure no gaps */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.header-container {
+    width: 100%;
+    background: #FFF;
+    box-shadow: 0 0 10px 20px rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0 10px 0;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.form-container form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-button {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+.header-container label {
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+}
+
+.header-container input[type="text"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    width: 200px;
+    background-color: #DBDBDB;
+    border: 2px solid #00D4FF;
+}
+
+button[type="submit"] {
+    background-color: #00D4FF;
+    color: #000;
+    border: none;
+    padding: 9px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #000;
+}
+
+button[type="submit"]:hover, .generate:hover {
+    background: #FFF;
+    transition: 0.3s;
+}
+
+.generate {
+    background-color: #00D4FF;
+    color: #000;
+    border: none;
+    padding: 9px 10px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #000;
+    text-decoration: none;
+}
+
+
+.content-container {
+    display: flex;
+    margin: 100px auto 0 auto;
+}
+
+.widget {
+    border: 4px solid #2a54de;
+    border-radius: 25px;
+    max-width: 350px;
+    margin: 0 20px 50px 0;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.widget img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.widget .buy {
+    text-align: center;
+    background: #2a54de;
+    color: #fff;
+    margin: 10px;
+    border-radius: 7px;
+    padding: 12px 0;
+    width: 280px;
+    margin: 0 auto 20px auto;
+}
+
+.widget-category {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product-info {
+    text-align: center;
+    padding: 0 35px;
+}
+
+ul li{
+    list-style: none;
+}
+
+.product-info li:first-child {
+    color: #696969;
+    font-size: 14px;
+}
+
+.product-info li:nth-child(2) {
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.product-info li:nth-child(3) {
+    color: #FF6900;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.product-info li:nth-child(4) {
+    color: #696969;
+    display: inline-block;
+    text-align: center;
+    text-decoration: line-through;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.product-info li:last-child {
+    color: #696969;
+    text-align: center;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+.arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.form-group label {
+    display: block;
+}
+
+.form-group select,
+.form-group input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.html-editor {
+    margin: 0 0 50px 20px;
+}
+
+.html-editor h2{
+    color: #FFF;
+}
+
+.html-editor textarea {
+    width: 400px;
+    height: 450px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #e3e3e3;
+    resize: vertical;
+}
+
+.file-content {
+    margin: 0 auto;
+    color: #FFF;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.file-content textarea {
+    height: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    resize: vertical;
+}
+
+.message {
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    font-weight: bold;
+    font-size: 20px;
+    border: 1px solid #000;
+}
+
+.error {
+    color: #FF0000;
+}
+
+.success {
+    color: #32CD32;
+}
