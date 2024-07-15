@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page Generator</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
+    <script src="{% static 'js/chat.js' %}" defer></script>
+</head>
+<body class="background-image">
+    <a href="#" title="zapytaj Chatbota" class="chat-icon">
+        <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota">
+    </a>
+
+    <div class="chat-popup" id="chatPopup">
+        <div class="chat-header">
+            <div class="header-left">
+                <div class="chatbot-img-container">
+                    <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota" class="chatbot-img">
+                    <span class="status-dot"></span>
+                </div>
+                <div class="status-container">
+                    <h2>MI-bot</h2>
+                    <span class="status-text">online</span>
+                </div>
+            </div>
+            <span class="close-btn" onclick="closeChatPopup()">&times;</span>
+        </div>
+
+        <div class="chat-body">
+            <div id="chatMessages"></div>
+            <input type="text" id="chatInput" placeholder="Napisz wiadomość..." onkeypress="sendMessage(event)">
+        </div>
+    </div>
+</body>
+
+<style>
+body.background-image
+{
+    background-image: url('{% static 'img/mi-background.png' %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+</style>
+</html>

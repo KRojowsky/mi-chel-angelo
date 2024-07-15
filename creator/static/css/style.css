@@ -350,3 +350,132 @@ ul li{
 .success {
     color: #32CD32;
 }
+
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 70px;
+    height: auto;
+    transition: transform 0.3s ease;
+    animation: pulse 1s infinite;
+}
+
+.chat-icon:hover {
+    transform: scale(1.15);
+}
+
+.chat-icon img {
+    width: 100%;
+    height: auto;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    width: 320px;
+    border-radius: 7px;
+    border: 1px solid #ddd;
+    z-index: 999;
+    background: #FFF;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #fff;
+    color: #000;
+    padding: 5px 5px 5px 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header .header-left {
+    display: flex;
+    align-items: center;
+}
+
+.chat-header .chatbot-img-container {
+    position: relative;
+    margin-right: 10px;
+}
+
+.chat-header .chatbot-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.chat-header .status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.chat-header .status-text {
+    color: #A9A9A9;
+    font-size: 14px;
+}
+
+.chat-header .status-dot {
+    position: absolute;
+    bottom: 5px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 50%;
+    border: 1px solid #FFF;
+}
+
+.chat-body {
+    padding: 11px;
+    background: #F4F4F4;
+}
+
+.chat-body #chatMessages {
+    height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.chat-body #chatInput {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+    font-size: 25px;
+    cursor: pointer;
+    color: #000;
+    margin-top:-35px;
+}

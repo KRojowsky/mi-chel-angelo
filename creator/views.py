@@ -138,3 +138,7 @@ def clear_file_content(request):
     except Exception as e:
         error_message = f'Błąd podczas czyszczenia pliku: {str(e)}'
         return render(request, 'creator/landing-page-creator.html', {'error_message': error_message})
+
+
+def chatbot(request):
+    return render(request, 'creator/chatbot.html')

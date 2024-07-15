@@ -7,5 +7,6 @@ urlpatterns = [
     path('product-details/', views.product_details, name='product_details'),
     path('add_to_file/', views.add_to_file, name='add_to_file'),
     path('display_file_content/', views.display_file_content, name='display_file_content'),
-    path('clear_file_content/', views.clear_file_content, name='clear_file_content')
+    path('clear_file_content/', views.clear_file_content, name='clear_file_content'),
+    path('chatbot/', views.chatbot, name='chatbot')
 ]
