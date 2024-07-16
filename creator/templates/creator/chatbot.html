@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png' %}">
     <script src="{% static 'js/chat.js' %}" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="background-image">
     <a href="#" title="zapytaj Chatbota" class="chat-icon">
@@ -29,13 +30,29 @@
         </div>
 
         <div class="chat-body">
-            <div id="chatMessages"></div>
-            <input type="text" id="chatInput" placeholder="Napisz wiadomość..." onkeypress="sendMessage(event)">
+            <div id="chatMessages">
+                <div class="message-bot">
+                    <div class="chatbot-img-container">
+                        <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota" class="chatbot-img">
+                    </div>
+                    <div class="message-text">
+                        <p>Cześć jestem MI-bot! Jak mogę Ci pomóc?</p>
+                        <button onclick="addUserMessage('sprawdź status zamówienia')">Sprawdź status zamówienia</button>
+                        <button onclick="">Skontaktuj się z nami</button>
+                    </div>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="chatInput" placeholder="Napisz wiadomość..." onkeypress="sendMessage(event)">
+                <button onclick="sendMessage()"><i class="material-icons">&#xe163;</i></button>
+            </div>
         </div>
     </div>
+
+    <input type="hidden" id="static-image-path" value="{% static 'img/chatbot-icon.png' %}">
 </body>
 
-<style>
+<!--<style>
 body.background-image
 {
     background-image: url('{% static 'img/mi-background.png' %}');
@@ -44,5 +61,5 @@ body.background-image
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-</style>
+</style>-->
 </html>
