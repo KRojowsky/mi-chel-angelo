@@ -526,6 +526,12 @@ ul li{
     word-wrap: break-word;
 }
 
+.message-time {
+    font-size: 12px;
+    color: #888;
+    margin: -5px 0 5px 0;
+}
+
 ::-webkit-scrollbar {
   width: 7px;
 }
