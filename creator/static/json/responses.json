@@ -1,103 +1,150 @@
 {
-    "questions": [
-        {
-            "question": [
-                "sprawdź status zamówienia", "sprawdź status", "status zamówienia"
-            ],
-            "answers": [
-                "Poproszę o numer zamówienia.",
-                "Podaj mi numer zamówienia, aby sprawdzić status.",
-                "Potrzebuję numeru zamówienia, aby Ci pomóc."
-            ]
-        },
-        {
-            "question": [
-                "godziny pracy biura", "jakie są godziny pracy",
-                "otwarci", "godziny otwarcia", "praca", "pracujecie"
-            ],
-            "answers": [
-                "Nasze biuro jest otwarte od poniedziałku do piątku <b>od 9:00 do 17:00.</b>",
-                "Jesteśmy dostępni od poniedziałku do piątku w godzinach <b>9:00-17:00.</b>"
-            ]
-        },
-        {
-            "question": [
-                "skontaktuj się z nami", "jak się skontaktować", "jak się kontaktować", "jaki kontakt", "kontakt"
-            ],
-            "answers": [
-                "Możesz skontaktować się z nami pod adresem email: <br><b>sklep@mi-store.pl</b><br> lub pod numerem telefonu: <br><b>575 228 666</b>.",
-                "Jeśli masz pytania, napisz do nas na: <br><b>sklep@mi-store.pl</b><br> lub telefonicznie: <br><b>575 228 666</b>."
-            ]
-        },
-        {
-            "question": [
-                "gdzie jesteście", "lokalizacja sklepu", "adres sklepu", "gdzie się znajdujecie", "wasza lokalizacja",
-                "lokalizacja biura", "lokalizacja", "sklep", "biuro"
-            ],
-            "answers": [
-                "Nasz sklep znajduje się pod adresem: <br><b>ul. Przykładowa 123, 00-000 Warszawa</b>",
-                "Jesteśmy zlokalizowani przy: <br><b>ul. Przykładowa 123, 00-000 Warszawa</b>"
-            ]
-        },
-        {
-            "question": [
-                "jakie produkty oferujecie", "co sprzedajecie", "co możecie zaproponować", "co macie w ofercie"
-            ],
-            "answers": [
-                "Oferujemy szeroki wybór produktów elektronicznych, w tym smartfony, laptopy, tablety oraz akcesoria.",
-                "Nasza oferta zawiera m.in. smartfony, laptopy, tablety oraz różnorodne akcesoria elektroniczne."
-            ]
-        },
-         {
-            "question": [
-                "jak złożyć zamówienie", "jak mogę zamówić", "proces zamawiania", "zamówienie"
-            ],
-            "answers": [
-                "Aby złożyć zamówienie, odwiedź naszą stronę internetową i wybierz interesujący Cię produkt. Następnie postępuj zgodnie z instrukcjami na ekranie.",
-                "Proces zamawiania jest prosty! Wybierz produkt, dodaj go do koszyka i przejdź do procesu zamawiania.",
-                "Możesz złożyć zamówienie online, wybierając produkt i wykonując kroki na stronie internetowej."
-            ]
-        },
-        {
-            "question": [
-                "metody płatności", "jak mogę zapłacić", "formy płatności", "płatność"
-            ],
-            "answers": [
-                "Akceptujemy płatności kartą kredytową oraz przelewem bankowym.",
-                "Możesz zapłacić kartą kredytową lub skorzystać z przelewu bankowego jako formy płatności.",
-                "Oferujemy płatności kartą oraz przelewem bankowym. Wybierz odpowiednią dla Ciebie metodę płatności."
-            ]
-        },
-        {
-            "question": [
-                "zwroty i reklamacje", "jak zwrócić produkt", "reklamacja", "zwrot", "zwroty", "raklamacja",
-                "reklamacje", "zwrócić", "oddać", "nie działa"
-            ],
-            "answers": [
-                "Informacje na temat zwrotów i reklamacji znajdziesz na naszej stronie internetowej w sekcji Pomoc.",
-                "Aby zwrócić produkt lub zgłosić reklamację, skontaktuj się z naszym działem obsługi klienta pod adresem email: sklep@mi-store.pl",
-                "Jeśli masz pytania dotyczące zwrotów lub reklamacji, skontaktuj się z nami telefonicznie lub mailowo."
-            ]
-        },
-        {
-            "question": [
-                "promocje i rabaty", "aktualne promocje", "czy są jakieś zniżki", "rabaty", "promocje"
-            ],
-            "answers": [
-                "Aby sprawdzić aktualne promocje i rabaty, odwiedź naszą stronę główną lub zapisz się do naszego newslettera.",
-                "Nasze aktualne promocje i rabaty są dostępne na stronie głównej. Sprawdź szczegóły na naszej stronie internetowej.",
-                "Zapisz się do naszego newslettera, aby otrzymywać informacje o najnowszych promocjach i rabatach!"
-            ]
-        },
-        {
-            "question": [
-                "dostawa", "jak długo trwa dostawa", "kiedy dostanę zamówienie", "czas dostawy"
-            ],
-            "answers": [
-                "Czas dostawy zależy od wybranej formy dostawy. Szczegółowe informacje znajdziesz na stronie produktu podczas składania zamówienia.",
-                "Orientacyjny czas dostawy jest podany na stronie produktu. Sprawdź dokładne informacje podczas zamawiania.",
-                "Czas oczekiwania na dostawę zależy od wybranej formy dostawy. Szczegółowe informacje znajdziesz na naszej stronie."
-            ]
-        }
-    ]
+  "questions": [
+    {
+      "question": [
+        "sprawdź status zamówienia",
+        "sprawdź status",
+        "status zamówienia",
+        "status"
+      ],
+      "answers": [
+        "Poproszę o numer zamówienia.",
+        "Podaj numer zamówienia, aby sprawdzić status.",
+        "Potrzebuję numeru zamówienia, aby Ci pomóc."
+      ]
+    },
+    {
+      "question": [
+        "godziny pracy biura",
+        "jakie są godziny pracy",
+        "otwarci",
+        "otwarcie",
+        "godziny otwarcia",
+        "praca",
+        "kiedy pracujecie",
+        "pracujecie"
+      ],
+      "answers": [
+        "Nasze biuro jest otwarte od poniedziałku do piątku <b>od 7:00 do 17:00.</b>",
+        "Jesteśmy dostępni od poniedziałku do piątku w godzinach <b>7:00-17:00.</b>"
+      ]
+    },
+    {
+      "question": [
+        "skontaktuj się z nami",
+        "jak się skontaktować",
+        "jak się kontaktować",
+        "jaki kontakt",
+        "kontakt",
+        "email",
+        "mail",
+        "telefon",
+        "numer"
+      ],
+      "answers": [
+        "Możesz skontaktować się z nami pod adresem email: <br><b>sklep@mi-store.pl</b><br> lub pod numerem telefonu: <br><b>575 228 666</b>.",
+        "Jeśli masz pytania, napisz do nas na: <br><b>sklep@mi-store.pl</b><br> lub telefonicznie: <br><b>575 228 666</b>."
+      ]
+    },
+    {
+      "question": [
+        "gdzie jesteście",
+        "adres sklepu",
+        "gdzie się znajdujecie",
+        "lokalizacja",
+        "sklep",
+        "biuro"
+      ],
+      "answers": [
+        "Nasz sklep znajduje się pod adresem: <br><b>Królowej Jadwigi 98, 30-209 Kraków</b>",
+        "Jesteśmy zlokalizowani przy: <br><b>Królowej Jadwigi 98, 30-209 Kraków</b>"
+      ]
+    },
+    {
+      "question": [
+        "jakie produkty oferujecie",
+        "co sprzedajecie",
+        "co możecie zaproponować",
+        "co macie w ofercie",
+        "oferta",
+        "produkty"
+      ],
+      "answers": [
+        "Oferujemy szeroki wybór produktów elektronicznych, w tym smartfony, laptopy, tablety oraz akcesoria.",
+        "Nasza oferta zawiera m.in. smartfony, laptopy, tablety oraz różnorodne akcesoria elektroniczne."
+      ]
+    },
+    {
+      "question": [
+        "jak złożyć zamówienie",
+        "jak mogę zamówić",
+        "proces zamawiania",
+        "zamówienie"
+      ],
+      "answers": [
+        "Aby złożyć zamówienie, odwiedź naszą stronę internetową i wybierz interesujący Cię produkt. Następnie postępuj zgodnie z instrukcjami na ekranie.",
+        "Proces zamawiania jest prosty! Wybierz produkt, dodaj go do koszyka i przejdź do procesu zamawiania.",
+        "Możesz złożyć zamówienie online, wybierając produkt i wykonując kroki na stronie internetowej."
+      ]
+    },
+    {
+      "question": [
+        "metody płatności",
+        "jak mogę zapłacić",
+        "formy płatności",
+        "płatność"
+      ],
+      "answers": [
+        "Akceptujemy płatności kartą kredytową oraz przelewem bankowym.",
+        "Możesz zapłacić kartą kredytową lub skorzystać z przelewu bankowego jako formy płatności.",
+        "Oferujemy płatności kartą oraz przelewem bankowym. Wybierz odpowiednią dla Ciebie metodę płatności."
+      ]
+    },
+    {
+      "question": [
+        "zwroty i reklamacje",
+        "jak zwrócić produkt",
+        "reklamacja",
+        "zwrot",
+        "zwroty",
+        "reklamacja",
+        "reklamacje",
+        "zwrócić",
+        "oddać",
+        "nie działa"
+      ],
+      "answers": [
+        "Informacje na temat zwrotów i reklamacji znajdziesz na naszej stronie internetowej w sekcji Pomoc.",
+        "Aby zwrócić produkt lub zgłosić reklamację, skontaktuj się z naszym działem obsługi klienta pod adresem email: sklep@mi-store.pl",
+        "Jeśli masz pytania dotyczące zwrotów lub reklamacji, skontaktuj się z nami telefonicznie lub mailowo."
+      ]
+    },
+    {
+      "question": [
+        "promocje i rabaty",
+        "aktualne promocje",
+        "czy są jakieś zniżki",
+        "rabaty",
+        "promocje"
+      ],
+      "answers": [
+        "Aby sprawdzić aktualne promocje i rabaty, odwiedź naszą stronę główną lub zapisz się do naszego newslettera.",
+        "Nasze aktualne promocje i rabaty są dostępne na stronie głównej. Sprawdź szczegóły na naszej stronie internetowej.",
+        "Zapisz się do naszego newslettera, aby otrzymywać informacje o najnowszych promocjach i rabatach!"
+      ]
+    },
+    {
+      "question": [
+        "dostawa",
+        "jak długo trwa dostawa",
+        "kiedy dostanę zamówienie",
+        "czas dostawy"
+      ],
+      "answers": [
+        "Czas dostawy zależy od wybranej formy dostawy. Szczegółowe informacje znajdziesz na stronie produktu podczas składania zamówienia.",
+        "Orientacyjny czas dostawy jest podany na stronie produktu. Sprawdź dokładne informacje podczas zamawiania.",
+        "Czas oczekiwania na dostawę zależy od wybranej formy dostawy. Szczegółowe informacje znajdziesz na naszej stronie."
+      ]
+    }
+  ]
 }

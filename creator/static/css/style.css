@@ -383,7 +383,7 @@ ul li{
     position: fixed;
     bottom: 100px;
     left: 20px;
-    width: 320px;
+    width: 350px;
     border-radius: 7px;
     border: 1px solid #DDD;
     z-index: 999;
@@ -452,7 +452,7 @@ ul li{
 }
 
 .chat-body #chatMessages {
-    height: 250px;
+    height: 400px;
     overflow-y: auto;
     border: 1px solid #ddd;
     padding: 10px;

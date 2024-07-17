@@ -10,49 +10,49 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="background-image">
-    <a href="#" title="zapytaj Chatbota" class="chat-icon">
-        <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota">
-    </a>
+<a href="#" title="zapytaj Chatbota" class="chat-icon">
+    <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota">
+</a>
 
-    <div class="chat-popup" id="chatPopup">
-        <div class="chat-header">
-            <div class="header-left">
-                <div class="chatbot-img-container">
-                    <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota" class="chatbot-img">
-                    <span class="status-dot"></span>
-                </div>
-                <div class="status-container">
-                    <h2>MI-bot</h2>
-                    <span class="status-text">online</span>
-                </div>
+<div class="chat-popup" id="chatPopup">
+    <div class="chat-header">
+        <div class="header-left">
+            <div class="chatbot-img-container">
+                <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota" class="chatbot-img">
+                <span class="status-dot"></span>
             </div>
-            <span class="close-btn" onclick="closeChatPopup()">&times;</span>
-        </div>
-
-        <div class="chat-body">
-            <div id="chatMessages">
-                <div class="message-bot">
-                    <div class="chatbot-img-container">
-                        <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota" class="chatbot-img">
-                    </div>
-                    <div class="message-text">
-                        <p>Cześć jestem MI-bot!&#128512<br>Jak mogę Ci pomóc?</p>
-                        <button onclick="addUserMessage('Sprawdź status zamówienia')">Sprawdź status zamówienia</button>
-                        <button onclick="addUserMessage('Skontaktuj się z nami')">Skontaktuj się z nami</button>
-                        <button onclick="addUserMessage('Godziny pracy biura')">Godziny pracy biura</button>
-                        <button onclick="addUserMessage('Metody płatności')">Metody płatności</button>
-                        <button onclick="addUserMessage('Jak długo trwa dostawa')">Jak długo trwa dostawa</button>
-                    </div>
-                </div>
-            </div>
-            <div class="input-container">
-                <input type="text" id="chatInput" placeholder="Napisz wiadomość..." onkeypress="sendMessage(event)">
-                <button onclick="sendMessage()"><i class="material-icons">&#xe163;</i></button>
+            <div class="status-container">
+                <h2>MI-bot</h2>
+                <span class="status-text">online</span>
             </div>
         </div>
+        <span class="close-btn" onclick="closeChatPopup()">&times;</span>
     </div>
 
-    <input type="hidden" id="static-image-path" value="{% static 'img/chatbot-icon.png' %}">
+    <div class="chat-body">
+        <div id="chatMessages">
+            <div class="message-bot">
+                <div class="chatbot-img-container">
+                    <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota" class="chatbot-img">
+                </div>
+                <div class="message-text">
+                    <p>Cześć jestem MI-bot!&#128512<br>Jak mogę Ci pomóc?</p>
+                    <button onclick="addUserMessage('Sprawdź status zamówienia')">Sprawdź status zamówienia</button>
+                    <button onclick="addUserMessage('Skontaktuj się z nami')">Skontaktuj się z nami</button>
+                    <button onclick="addUserMessage('Godziny pracy biura')">Godziny pracy biura</button>
+                    <button onclick="addUserMessage('Metody płatności')">Metody płatności</button>
+                    <button onclick="addUserMessage('Jak długo trwa dostawa')">Jak długo trwa dostawa?</button>
+                </div>
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="chatInput" placeholder="Napisz wiadomość..." onkeypress="sendMessage(event)">
+            <button onclick="sendMessage()"><i class="material-icons">&#xe163;</i></button>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="static-image-path" value="{% static 'img/chatbot-icon.png' %}">
 </body>
 
 <!--<style>
