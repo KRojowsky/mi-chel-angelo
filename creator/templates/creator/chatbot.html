@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="background-image">
+
 <a href="#" title="zapytaj Chatbota" class="chat-icon">
     <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota">
 </a>
@@ -24,6 +25,9 @@
             <div class="status-container">
                 <h2>MI-bot</h2>
                 <span class="status-text">online</span>
+                <div id="response">
+
+                </div>
             </div>
         </div>
         <span class="close-btn" onclick="closeChatPopup()">&times;</span>
@@ -45,10 +49,11 @@
                 </div>
             </div>
         </div>
-        <div class="input-container">
-            <input type="text" id="chatInput" placeholder="Napisz wiadomość..." onkeypress="sendMessage(event)">
-            <button onclick="sendMessage()"><i class="material-icons">&#xe163;</i></button>
-        </div>
+        <form class="input-container">
+            {% csrf_token %}
+            <input type="text" id="chatInput" name="chatInput" placeholder="Napisz wiadomość..." onkeypress="sendMessage(event)">
+            <button type="submit"><i class="material-icons">&#xe163;</i></button>
+        </form>
     </div>
 </div>
 

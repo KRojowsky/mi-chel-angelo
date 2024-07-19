@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 import os
 from django.http import HttpResponseRedirect
-from django.http import HttpResponse
 from django.http import JsonResponse
 import cohere
 
@@ -84,8 +83,6 @@ def product_details(request):
                         </div>
                     </div>
                 '''
-
-
 
 
 
@@ -289,7 +286,7 @@ def product_details(request):
 def add_to_file(request):
     if request.method == 'POST':
         product_html = request.POST.get('product_html', '')
-        file_path = os.path.join('opinions.txt')  # Update this path
+        file_path = os.path.join('opinions.txt')
         with open(file_path, 'a') as file:
             file.write(product_html + "\n")
         success_message = 'Kod HTML poprawnie utworzony'
@@ -321,6 +318,24 @@ def clear_file_content(request):
 
 
 def chatbot(request):
+    response_text = None
+    if request.method == 'POST':
+        user_input = request.POST.get('chatInput', '')
+        co = cohere.Client("8lO0Yt2Sbk80gVYgrn3IlucmAU151GEhtoQfIFow")
+
+        message = (f":Pytanie dotyczące mi-store.pl, "
+                   f"Jesteś teraz Chatbotem o nazwie MI-BOT, odpowiedz na pytanie dotyczące sklepu internetowego Mi-store: "
+                   f"jeśli nie znasz odpowiedzi dokładniej to nie wymyślaj nic tylko poleć kontakt mailowy (ale nie podawaj maila), "
+                   f"odpowiedź ma być bardzo krótka i profesjonalna: Pytanie: \"{user_input}\"")
+
+        try:
+            response = co.chat(message=message)
+            response_text = response.text
+        except Exception as e:
+            response_text = f'Error: {e}'
+
+        return JsonResponse({'response_text': response_text})
+
     return render(request, 'creator/chatbot.html')
 
 
