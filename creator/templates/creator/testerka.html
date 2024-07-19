@@ -2,14 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Coherent AI Response</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.querySelector('form');
+      const input = document.querySelector('#user_input');
+      const responseContainer = document.querySelector('#response');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('/testerka/', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          responseContainer.innerHTML = `<strong>Response from Coherent AI:</strong> ${data.response_text}`;
+          input.value = '';
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    });
+  </script>
 </head>
 <body>
   <h1>Coherent AI Response</h1>
 
-  {% if response_text %}
-    <p><strong>Response from Coherent AI:</strong> {{ response_text }}</p>
-  {% endif %}
+  <div id="response">
+
+  </div>
 
   <form method="post">
     {% csrf_token %}

@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import os
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.http import JsonResponse
 import cohere
 
 
@@ -324,11 +325,18 @@ def chatbot(request):
 
 
 def testerka(request):
-    '''if request.method == 'POST':
+    response_text = None
+    if request.method == 'POST':
         user_input = request.POST.get('user_input', '')
         co = cohere.Client("8lO0Yt2Sbk80gVYgrn3IlucmAU151GEhtoQfIFow")
 
-        message = f"Hejka: {user_input}\n"
-        response = co.chat(message=message)'''
+        message = f"{user_input}"
+        try:
+            response = co.chat(message=message)
+            response_text = response.text
+        except Exception as e:
+            response_text = f'Error: {e}'
 
-    return render(request, 'creator/testerka.html'''', {'response_text': response.text}''')
+        return JsonResponse({'response_text': response_text})
+
+    return render(request, 'creator/testerka.html')
