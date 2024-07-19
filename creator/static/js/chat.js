@@ -6,6 +6,11 @@ function closeChatPopup() {
     document.getElementById('chatPopup').style.display = 'none';
 }
 
+function addUserMessage(messageText) {
+    appendUserMessage(messageText);
+    checkUserMessage(messageText);
+}
+
 function sendMessage(event) {
     if (event && event.key !== 'Enter') return;
 
@@ -31,11 +36,6 @@ function appendUserMessage(message) {
         </div>`;
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function addUserMessage(messageText) {
-    appendUserMessage(messageText);
-    checkUserMessage(messageText);
 }
 
 function checkUserMessage(messageText) {

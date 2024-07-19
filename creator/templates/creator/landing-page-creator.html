@@ -101,6 +101,17 @@
             </form>
         </div>
         {% endif %}
+
+
+        {% if product_blog %}
+        <div class="blog-editor">
+            <form method="post" action="{% url 'add_to_file' %}">
+                {% csrf_token %}
+                <textarea id="product_blog" name="product_blog">{{ product_blog }}</textarea>
+            </form>
+        </div>
+        {% endif %}
+
     </div>
 
     {% if file_content %}

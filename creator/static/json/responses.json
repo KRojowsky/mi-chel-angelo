@@ -2,10 +2,9 @@
   "questions": [
     {
       "question": [
-        "sprawdź status zamówienia",
-        "sprawdź status",
-        "status zamówienia",
-        "status"
+        "status",
+        "zamówieni",
+        "sprawdź status zamówienia"
       ],
       "answers": [
         "Poproszę o numer zamówienia.",
@@ -15,14 +14,12 @@
     },
     {
       "question": [
-        "godziny pracy biura",
-        "jakie są godziny pracy",
+        "godzin",
+        "godziny pracy",
         "otwarci",
-        "otwarcie",
-        "godziny otwarcia",
         "praca",
-        "kiedy pracujecie",
-        "pracujecie"
+        "pracuj",
+        "otwarte"
       ],
       "answers": [
         "Nasze biuro jest otwarte od poniedziałku do piątku <b>od 7:00 do 17:00.</b>",
@@ -31,12 +28,8 @@
     },
     {
       "question": [
-        "skontaktuj się z nami",
-        "jak się skontaktować",
-        "jak się kontaktować",
-        "jaki kontakt",
+        "skontakt",
         "kontakt",
-        "email",
         "mail",
         "telefon",
         "numer"
@@ -48,12 +41,12 @@
     },
     {
       "question": [
-        "gdzie jesteście",
-        "adres sklepu",
-        "gdzie się znajdujecie",
+        "gdzie",
+        "adres",
         "lokalizacja",
-        "sklep",
-        "biuro"
+        "gdzie sklep",
+        "gdzie biuro",
+        "miejsce"
       ],
       "answers": [
         "Nasz sklep znajduje się pod adresem: <br><b>Królowej Jadwigi 98, 30-209 Kraków</b>",
@@ -62,11 +55,9 @@
     },
     {
       "question": [
-        "jakie produkty oferujecie",
-        "co sprzedajecie",
-        "co możecie zaproponować",
-        "co macie w ofercie",
-        "oferta",
+        "ofer",
+        "sprzeda",
+        "zapropon",
         "produkty"
       ],
       "answers": [
@@ -76,10 +67,10 @@
     },
     {
       "question": [
-        "jak złożyć zamówienie",
-        "jak mogę zamówić",
-        "proces zamawiania",
-        "zamówienie"
+        "jak zamówić",
+        "kupić",
+        "złożyć",
+        "naby"
       ],
       "answers": [
         "Aby złożyć zamówienie, odwiedź naszą stronę internetową i wybierz interesujący Cię produkt. Następnie postępuj zgodnie z instrukcjami na ekranie.",
@@ -102,14 +93,10 @@
     },
     {
       "question": [
-        "zwroty i reklamacje",
-        "jak zwrócić produkt",
-        "reklamacja",
         "zwrot",
-        "zwroty",
-        "reklamacja",
-        "reklamacje",
+        "reklamacj",
         "zwrócić",
+        "zwracać",
         "oddać",
         "nie działa"
       ],
@@ -121,11 +108,11 @@
     },
     {
       "question": [
-        "promocje i rabaty",
-        "aktualne promocje",
-        "czy są jakieś zniżki",
-        "rabaty",
-        "promocje"
+        "promocj",
+        "rabat",
+        "zniżk",
+        "rabat",
+        "promocj"
       ],
       "answers": [
         "Aby sprawdzić aktualne promocje i rabaty, odwiedź naszą stronę główną lub zapisz się do naszego newslettera.",
@@ -135,10 +122,10 @@
     },
     {
       "question": [
-        "dostawa",
+        "dostaw",
         "jak długo trwa dostawa",
         "kiedy dostanę zamówienie",
-        "czas dostawy"
+        "czas dostaw"
       ],
       "answers": [
         "Czas dostawy zależy od wybranej formy dostawy. Szczegółowe informacje znajdziesz na stronie produktu podczas składania zamówienia.",

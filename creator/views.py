@@ -3,6 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 import os
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
+import cohere
 
 
 def widget(request):
@@ -35,6 +37,7 @@ def product_details(request):
                 info1 = soup.find('del', class_='projector_prices__maxprice') if soup.find('del', class_='projector_prices__maxprice') else None
                 info2 = soup.find('strong', class_='projector_prices__price') if soup.find('strong', class_='projector_prices__price') else None
                 info3 = soup.find('span', class_='omnibus_price__value') if soup.find('span', class_='omnibus_price__value') else None
+                info4 = soup.find('div', class_='projector_description description') if soup.find('div', class_='projector_description description') else None
                 custom_name = request.GET.get('custom_name', info0.get_text() if info0 else None)
 
                 product_name = custom_name if custom_name else (info0.get_text() if info0 else "Brak informacji")
@@ -81,9 +84,185 @@ def product_details(request):
                     </div>
                 '''
 
+
+
+
+
+                product_blog = f'''
+                   <div class="product-box">
+                       <a href="{url}" class="product-link">
+                           <div class="product-img-box">
+                               <img src="{image_url}" alt="{product_name}">
+                           </div>
+                       </a>
+                       <div class="product-details">
+                           <div class="category">{selected_category}</div>
+                           <div class="name">{product_name}</div>
+                           <div class="description">{info4.get_text()}</div>
+                           <div class="price">
+                                <strong>{info2.get_text() if info2 else "Brak informacji"}</strong> <s class="old-price">{info1.get_text() if info1 else "Brak informacji"}</s>
+                           </div>
+                '''
+
+                if info3:
+                    product_blog += f'''
+                           <div class="the-lowest-price">Najniższa cena z 30 dni przed obniżką: {info3.get_text()}</div>
+                    '''
+
+                product_blog += f'''
+                           <div class="buy">
+                               <a href="{url}">
+                                   <div class="btn">Kup teraz</div>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                '''
+
+                product_blog += '''
+                    <style>
+                        @keyframes glow {
+                            0% {
+                                box-shadow: 0 0 0 #ff6600;
+                            }
+                            50% {
+                                box-shadow: 0 0 20px #ff6600;
+                            }
+                            100% {
+                                box-shadow: 0 0 0 #ff6600;
+                            }
+                        }
+                    
+                        @keyframes float {
+                            0% {
+                                transform: translateY(10px);
+                            }
+                            50% {
+                                transform: translateY(-10px);
+                            }
+                            100% {
+                                transform: translateY(10px);
+                            }
+                        }
+                    
+                        .product-box {
+                            display: flex;
+                            align-items: center;
+                            box-sizing: border-box;
+                            justify-content: space-between;
+                        }
+                    
+                        .product-img-box {
+                            flex: 1;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 20px;
+                        }
+                    
+                        .product-img-box img {
+                            max-width: 70%;
+                            height: auto;
+                            border-radius: 10px;
+                            animation: float 5s ease-in-out infinite;
+                            transition: transform 0.3s ease;
+                        }
+                    
+                        .product-details {
+                            flex: 2;
+                            padding: 0 20px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: flex-start;
+                        }
+                        
+                        .product-details .name{
+                            font-weight: bold;
+                            padding-bottom: 10px;
+                            font-size: 18px;
+                        }
+                    
+                        .product-details .category,
+                        .product-details .name,
+                        .product-details .price,
+                        .product-details .buy {
+                            margin: 10px 0;
+                            text-align: left;
+                        }
+                    
+                        .product-details .price {
+                            display: flex;
+                            align-items: center;
+                        }
+                    
+                        .product-details .price strong {
+                            font-size: 25px;
+                            color: #F3601F;
+                            padding: 10px 0;
+                        }
+                    
+                        .product-details .price .old-price {
+                            margin-left: 10px;
+                            color: #888;
+                            text-decoration: line-through;
+                        }
+                    
+                        .product-details .buy .btn {
+                            display: inline-block;
+                            padding: 10px 20px;
+                            background-color: #ff6600;
+                            color: #fff;
+                            border-radius: 5px;
+                            text-decoration: none;
+                            text-align: center;
+                            transition: background-color 0.3s ease, transform 0.3s ease;
+                            animation: glow 2s infinite;
+                        }
+                    
+                        .btn:hover {
+                            opacity: 0.6;
+                            transition: 0.3s;
+                        }
+                    
+                        .product-details .buy .btn:hover {
+                            background-color: #e65c00;
+                            transform: translateY(-3px);
+                        }
+                        
+                        @media (max-width: 768px) {
+                            .product-box {
+                                flex-direction: column;
+                                align-items: center;
+                                text-align: center;
+                            }
+                    
+                            .product-img-box {
+                                margin: 10px;
+                            }
+                    
+                            .product-details {
+                                padding: 0 10px;
+                                align-items: center;
+                            }
+                    
+                            .product-details .price strong {
+                                font-size: 20px;
+                            }
+                            
+                            .product-details .buy .btn {
+                                margin-bottom: 20px;
+                            }
+                        }
+                    </style>
+                '''
+
+
+
                 if convert:
                     return render(request, 'creator/landing-page-creator.html', {
                         'product_html': product_html,
+                        'product_blog': product_blog,
                         'content': content,
                         'selected_category': selected_category,
                         'image_url': image_url,
@@ -142,3 +321,14 @@ def clear_file_content(request):
 
 def chatbot(request):
     return render(request, 'creator/chatbot.html')
+
+
+def testerka(request):
+    '''if request.method == 'POST':
+        user_input = request.POST.get('user_input', '')
+        co = cohere.Client("8lO0Yt2Sbk80gVYgrn3IlucmAU151GEhtoQfIFow")
+
+        message = f"Hejka: {user_input}\n"
+        response = co.chat(message=message)'''
+
+    return render(request, 'creator/testerka.html'''', {'response_text': response.text}''')

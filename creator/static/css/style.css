@@ -291,15 +291,27 @@ ul li{
     margin: 5px 0;
 }
 
-.html-editor {
+.html-editor, .blog-editor {
     margin: 0 0 50px 20px;
 }
 
-.html-editor h2{
+.html-editor h2, .blog-editor h2{
     color: #FFF;
 }
 
 .html-editor textarea {
+    width: 400px;
+    height: 450px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #e3e3e3;
+    resize: vertical;
+}
+
+.blog-editor textarea {
     width: 400px;
     height: 450px;
     font-family: 'Courier New', Courier, monospace;

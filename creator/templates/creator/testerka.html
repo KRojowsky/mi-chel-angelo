@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <h1>Coherent AI Response</h1>
+
+  {% if response_text %}
+    <p><strong>Response from Coherent AI:</strong> {{ response_text }}</p>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <label for="user_input">Enter your message:</label><br>
+    <input type="text" id="user_input" name="user_input"><br>
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
