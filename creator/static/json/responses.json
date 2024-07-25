@@ -31,7 +31,6 @@
         "skontakt",
         "kontakt",
         "mail",
-        "telefon",
         "numer"
       ],
       "answers": [
@@ -111,7 +110,6 @@
         "promocj",
         "rabat",
         "zniżk",
-        "rabat",
         "promocj"
       ],
       "answers": [
@@ -131,6 +129,130 @@
         "Czas dostawy zależy od wybranej formy dostawy. Szczegółowe informacje znajdziesz na stronie produktu podczas składania zamówienia.",
         "Orientacyjny czas dostawy jest podany na stronie produktu. Sprawdź dokładne informacje podczas zamawiania.",
         "Czas oczekiwania na dostawę zależy od wybranej formy dostawy. Szczegółowe informacje znajdziesz na naszej stronie."
+      ]
+    },
+    {
+      "question": [
+        "serwis",
+        "naprawa",
+        "serwisowanie",
+        "usługa",
+        "gwarancja"
+      ],
+      "answers": [
+        "Oferujemy serwisowanie produktów zakupionych w naszym sklepie. Skontaktuj się z naszym działem obsługi klienta, aby uzyskać więcej informacji.",
+        "Nasze produkty objęte są gwarancją. W razie problemów z produktem, prosimy o kontakt z działem obsługi klienta."
+      ]
+    },
+    {
+      "question": [
+        "aktualności",
+        "nowości",
+        "aktualizacje",
+        "wiadomości",
+        "newsy"
+      ],
+      "answers": [
+        "Aktualne informacje o naszych produktach i usługach znajdziesz na naszej stronie głównej oraz w sekcji Aktualności.",
+        "Śledź nasze nowości i aktualizacje w sekcji Aktualności na naszej stronie internetowej."
+      ]
+    },
+    {
+      "question": [
+        "lokal",
+        "oddział",
+        "sklepy",
+        "gdzie kupić",
+        "punkty sprzedaży"
+      ],
+      "answers": [
+        "Nasze sklepy stacjonarne znajdują się w kilku miastach. Sprawdź listę lokalizacji na naszej stronie internetowej.",
+        "Lista naszych sklepów stacjonarnych jest dostępna na naszej stronie w sekcji 'Nasze sklepy'."
+      ]
+    },
+    {
+      "question": [
+        "rabaty dla studentów",
+        "zniżki studenckie",
+        "promocje studenckie",
+        "oferty studenckie"
+      ],
+      "answers": [
+        "Oferujemy specjalne zniżki dla studentów. Sprawdź szczegóły na naszej stronie internetowej w sekcji Promocje.",
+        "Studenci mogą skorzystać z naszych specjalnych ofert. Więcej informacji na stronie w sekcji 'Promocje'."
+      ]
+    },
+    {
+      "question": [
+        "czas realizacji zamówienia",
+        "termin realizacji",
+        "realizacja zamówienia",
+        "długość realizacji"
+      ],
+      "answers": [
+        "Standardowy czas realizacji zamówienia wynosi od 2 do 5 dni roboczych.",
+        "Zamówienia realizujemy w ciągu 2-5 dni roboczych."
+      ]
+    },
+    {
+      "question": [
+        "koszt wysyłki",
+        "opłaty za wysyłkę",
+        "koszty dostawy",
+        "cena wysyłki"
+      ],
+      "answers": [
+        "Koszt wysyłki zależy od wybranej metody dostawy. Szczegółowe informacje znajdziesz na stronie produktu.",
+        "Opłaty za wysyłkę są podane podczas składania zamówienia w sekcji wyboru metody dostawy."
+      ]
+    },
+    {
+      "question": [
+        "rezygnacja z zamówienia",
+        "anulowanie zamówienia",
+        "anulować zamówienie",
+        "wycofać zamówienie"
+      ],
+      "answers": [
+        "Aby anulować zamówienie, skontaktuj się z naszym działem obsługi klienta jak najszybciej. Numer kontaktowy: 575 228 666.",
+        "Jeśli chcesz anulować zamówienie, prosimy o kontakt z działem obsługi klienta pod adresem email: sklep@mi-store.pl"
+      ]
+    },
+    {
+      "question": [
+        "cennik",
+        "ceny produktów",
+        "ile kosztuje",
+        "koszt",
+        "cena"
+      ],
+      "answers": [
+        "Ceny naszych produktów są dostępne na stronie internetowej przy każdym produkcie.",
+        "Aktualny cennik znajdziesz na naszej stronie internetowej."
+      ]
+    },
+    {
+      "question": [
+        "konkursy",
+        "promocje specjalne",
+        "eventy",
+        "wydarzenia"
+      ],
+      "answers": [
+        "Informacje o konkursach, promocjach specjalnych i wydarzeniach znajdziesz w sekcji Aktualności na naszej stronie internetowej.",
+        "Śledź nasze aktualności, aby być na bieżąco z konkursami i promocjami."
+      ]
+    },
+    {
+      "question": [
+        "lojalnościow",
+        "punkt",
+        "nagrod",
+        "program"
+      ],
+      "answers": [
+        "Oferujemy program lojalnościowy dla naszych klientów. Szczegóły znajdziesz na naszej stronie w sekcji 'Program Lojalnościowy'.",
+        "Dołącz do naszego programu lojalnościowego i zbieraj punkty za zakupy! Więcej informacji na stronie."
       ]
     }
   ]

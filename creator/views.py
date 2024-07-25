@@ -87,37 +87,60 @@ def product_details(request):
 
 
                 product_blog = f'''
-                   <div class="product-box">
-                       <a href="{url}" class="product-link">
-                           <div class="product-img-box">
-                               <img src="{image_url}" alt="{product_name}">
-                           </div>
-                       </a>
-                       <div class="product-details">
-                           <div class="category">{selected_category}</div>
-                           <div class="name">{product_name}</div>
-                           <div class="description">{info4.get_text()}</div>
-                           <div class="price">
-                                <strong>{info2.get_text() if info2 else "Brak informacji"}</strong> <s class="old-price">{info1.get_text() if info1 else "Brak informacji"}</s>
-                           </div>
-                '''
-
-                if info3:
-                    product_blog += f'''
-                           <div class="the-lowest-price">Najniższa cena z 30 dni przed obniżką: {info3.get_text()}</div>
-                    '''
-
-                product_blog += f'''
-                           <div class="buy">
-                               <a href="{url}">
-                                   <div class="btn">Kup teraz</div>
-                               </a>
-                           </div>
-                       </div>
-                   </div>
+                    <div class="product-box" data-product-id="{product_id}">
+                        <a class="product-link" href="https://mi-store.pl/product-xxx-{product_id}.html">
+                            <div class="product-img-box">
+                                <img src="{image_url}" alt="{product_name}">
+                            </div>
+                        </a>
+                        <div class="product-details">
+                            <div class="category">{selected_category}</div>
+                            <div class="name">{product_name}</div>
+                            <div class="description">{info4.get_text()}</div>
+                            <div class="price">
+                                <strong></strong> <s class="old-price"></s>
+                            </div>
+                            <div class="the-lowest-price"></div>
+                            <div class="buy">
+                                <a class="btn" href="https://mi-store.pl/product-xxx-{product_id}.html">Kup teraz</a>
+                            </div>
+                        </div>
+                    </div>
                 '''
 
                 product_blog += '''
+                     <script>
+						async function fetchProductData(productId, container) {
+							const url = `https://mi-store.pl/product-pol-${productId}.html`;
+							const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+
+							try {
+								const response = await fetch(proxyUrl);
+								const text = await response.text();
+
+								const parser = new DOMParser();
+								const doc = parser.parseFromString(text, 'text/html');
+
+								const priceElement = doc.querySelector('strong.projector_prices__price');
+								const oldPriceElement = doc.querySelector('del.projector_prices__maxprice');
+								const lowestPriceElement = doc.querySelector('span.omnibus_price__value');
+
+								container.querySelector('.price strong').innerText = priceElement ? priceElement.innerText : '';
+								container.querySelector('.old-price').innerText = oldPriceElement ? oldPriceElement.innerText : '';
+								container.querySelector('.the-lowest-price').innerText = lowestPriceElement ? `Najniższa cena z 30 dni przed obniżką: ${lowestPriceElement.innerText}` : '';
+							} catch (error) {
+								container.querySelector('.price strong').innerText = 'Nie udało sie pobrać ceny';
+								container.querySelector('.old-price').innerText = '';
+								container.querySelector('.the-lowest-price').innerText = '';
+							}
+						}
+
+						document.querySelectorAll('.product-box').forEach(container => {
+							const productId = container.getAttribute('data-product-id');
+							fetchProductData(productId, container);
+						});
+					</script>
+                    
                     <style>
                         @keyframes glow {
                             0% {
@@ -180,12 +203,16 @@ def product_details(request):
                             padding-bottom: 10px;
                             font-size: 18px;
                         }
+						
+						.category, .old-price, .the-lowest-price{
+							color: #888;
+						}
                     
                         .product-details .category,
                         .product-details .name,
                         .product-details .price,
                         .product-details .buy {
-                            margin: 10px 0;
+                            margin: 5px 0;
                             text-align: left;
                         }
                     
@@ -202,7 +229,6 @@ def product_details(request):
                     
                         .product-details .price .old-price {
                             margin-left: 10px;
-                            color: #888;
                             text-decoration: line-through;
                         }
                     
@@ -216,6 +242,7 @@ def product_details(request):
                             text-align: center;
                             transition: background-color 0.3s ease, transform 0.3s ease;
                             animation: glow 2s infinite;
+							margin: 10px 0;
                         }
                     
                         .btn:hover {
@@ -276,6 +303,9 @@ def product_details(request):
                     'custom_name': custom_name
                 })
 
+                patch_no_cache(response)
+                return response
+
             except requests.exceptions.RequestException as e:
                 error_message = f'Błąd podczas pobierania strony: {str(e)}'
                 return render(request, 'creator/landing-page-creator.html', {'error_message': error_message})
@@ -318,24 +348,6 @@ def clear_file_content(request):
 
 
 def chatbot(request):
-    response_text = None
-    if request.method == 'POST':
-        user_input = request.POST.get('chatInput', '')
-        co = cohere.Client("8lO0Yt2Sbk80gVYgrn3IlucmAU151GEhtoQfIFow")
-
-        message = (f":Pytanie dotyczące mi-store.pl, "
-                   f"Jesteś teraz Chatbotem o nazwie MI-BOT, odpowiedz na pytanie dotyczące sklepu internetowego Mi-store: "
-                   f"jeśli nie znasz odpowiedzi dokładniej to nie wymyślaj nic tylko poleć kontakt mailowy (ale nie podawaj maila), "
-                   f"odpowiedź ma być bardzo krótka i profesjonalna: Pytanie: \"{user_input}\"")
-
-        try:
-            response = co.chat(message=message)
-            response_text = response.text
-        except Exception as e:
-            response_text = f'Error: {e}'
-
-        return JsonResponse({'response_text': response_text})
-
     return render(request, 'creator/chatbot.html')
 
 

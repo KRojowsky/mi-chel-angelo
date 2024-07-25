@@ -181,7 +181,6 @@ button[type="submit"]:hover, .generate:hover {
     text-decoration: none;
 }
 
-
 .content-container {
     display: flex;
     margin: 100px auto 0 auto;
@@ -363,14 +362,16 @@ ul li{
     color: #32CD32;
 }
 
+
+
+
 .chat-icon {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 70px;
+    bottom: 15px;
+    left: 15px;
+    width: 65px;
     height: auto;
-    transition: transform 0.3s ease;
-    animation: pulse 1s infinite;
+    animation: pulse 2s infinite;
 }
 
 .chat-icon img {
@@ -393,8 +394,8 @@ ul li{
 .chat-popup {
     display: none;
     position: fixed;
-    bottom: 100px;
-    left: 20px;
+    bottom: 90px;
+    left: 15px;
     width: 350px;
     border-radius: 7px;
     border: 1px solid #DDD;
@@ -485,8 +486,12 @@ ul li{
 .close-btn {
     font-size: 25px;
     cursor: pointer;
-    color: #000;
+    color: #696969;
     margin-top:-35px;
+}
+
+.close-btn:hover {
+    color: #000;
 }
 
 .message-bot {
@@ -572,7 +577,9 @@ ul li{
     color: #000;
     cursor: pointer;
     position: absolute;
-    right: 1px;
+    right: 3px;
     top: 15px;
     border: none;
+    padding:1px;
+    background: #FFF;
 }

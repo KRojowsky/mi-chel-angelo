@@ -48,11 +48,20 @@
                     <button onclick="addUserMessage('Jak długo trwa dostawa')">Jak długo trwa dostawa?</button>
                 </div>
             </div>
+
+            <div id="typingIndicator" class="message-bot" style="display: none;">
+                <div class="chatbot-img-container">
+                    <img src="{% static 'img/chatbot-icon.png' %}" alt="ikona chatbota" class="chatbot-img">
+                </div>
+            </div>
         </div>
+
         <form class="input-container">
             {% csrf_token %}
             <input type="text" id="chatInput" name="chatInput" placeholder="Napisz wiadomość..." onkeypress="sendMessage(event)">
-            <button type="submit"><i class="material-icons">&#xe163;</i></button>
+            <button type="submit" class="send-button">
+                <i class="material-icons">&#xe163;</i>
+            </button>
         </form>
     </div>
 </div>
