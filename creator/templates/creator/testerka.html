@@ -1,48 +1,74 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Coherent AI Response</title>
+  <title>Testerka</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    #chatFrame {
+      width: 352px;
+      height: 557px;
+      border: none;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      border-radius: 10px;
+      position: fixed;
+      bottom: 60px;
+      left: 20px;
+      display: none;
+      z-index: 1000;
+    }
+
+    #toggleButton {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: orange;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 1001;
+    }
+
+    #toggleButton:hover {
+      opacity: .8;
+    }
+  </style>
+</head>
+<body class="background-image">
+
+  <iframe id="chatFrame" src="https://miangelo.pythonanywhere.com/chatbot/"></iframe>
+  <button id="toggleButton"><i class="material-icons">chat</i></button>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.querySelector('form');
-      const input = document.querySelector('#user_input');
-      const responseContainer = document.querySelector('#response');
-
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-
-        fetch('/testerka/', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-          }
-        })
-        .then(response => response.json())
-        .then(data => {
-          responseContainer.innerHTML = `<strong>Response from Coherent AI:</strong> ${data.response_text}`;
-          input.value = '';
-        })
-        .catch(error => console.error('Error:', error));
-      });
+    document.getElementById('toggleButton').addEventListener('click', function() {
+      var iframe = document.getElementById('chatFrame');
+      if (iframe.style.display === 'none' || iframe.style.display === '') {
+        iframe.style.display = 'block';
+        this.textContent = 'Zamknij Czat';
+      } else {
+        iframe.style.display = 'none';
+        this.textContent = 'Otwórz Czat';
+      }
     });
   </script>
-</head>
-<body>
-  <h1>Coherent AI Response</h1>
 
-  <div id="response">
-
-  </div>
-
-  <form method="post">
-    {% csrf_token %}
-    <label for="user_input">Enter your message:</label><br>
-    <input type="text" id="user_input" name="user_input"><br>
-    <button type="submit">Send</button>
-  </form>
 </body>
+
+<style>
+body.background-image
+{
+    background-image: url('{% static 'img/mi-background.png' %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+</style>
+
 </html>

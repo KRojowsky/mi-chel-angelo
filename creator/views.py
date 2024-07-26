@@ -352,18 +352,5 @@ def chatbot(request):
 
 
 def testerka(request):
-    response_text = None
-    if request.method == 'POST':
-        user_input = request.POST.get('user_input', '')
-        co = cohere.Client("8lO0Yt2Sbk80gVYgrn3IlucmAU151GEhtoQfIFow")
-
-        message = f"{user_input}"
-        try:
-            response = co.chat(message=message)
-            response_text = response.text
-        except Exception as e:
-            response_text = f'Error: {e}'
-
-        return JsonResponse({'response_text': response_text})
 
     return render(request, 'creator/testerka.html')
