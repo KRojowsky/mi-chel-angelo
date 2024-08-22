@@ -87,199 +87,393 @@ def product_details(request):
 
 
                 product_blog = f'''
-                    <div class="product-box" data-product-id="{product_id}">
-                        <a class="product-link" href="https://mi-store.pl/product-xxx-{product_id}.html">
-                            <div class="product-img-box">
-                                <img src="{image_url}" alt="{product_name}">
-                            </div>
-                        </a>
-                        <div class="product-details">
-                            <div class="category">{selected_category}</div>
-                            <div class="name">{product_name}</div>
-                            <div class="description">{info4.get_text()}</div>
-                            <div class="price">
-                                <strong></strong> <s class="old-price"></s>
-                            </div>
-                            <div class="the-lowest-price"></div>
-                            <div class="buy">
-                                <a class="btn" href="https://mi-store.pl/product-xxx-{product_id}.html">Kup teraz</a>
-                            </div>
+                
+                ################ POCZĄTEK KARTY Z PRODUKTEM (WKLEJASZ W MIEJSCE GDZIE CHCESZ MIEĆ PRODUKT)
+                
+                
+                
+                <div class="product-box" data-product-id="{product_id}">
+                    <a class="product-link" href="https://mi-store.pl/product-xxx-{product_id}.html">
+                        <div class="product-img-box">
+                            <img src="{image_url}" alt="{product_name}">
+                        </div>
+                    </a>
+                    <div class="product-details">
+                        <div class="category">{selected_category}</div>
+                        <div class="name">{product_name}</div>
+                        <div class="description">{info4.get_text()}</div>
+                        <div class="price">
+                            <strong></strong> <s class="old-price"></s>
+                        </div>
+                        <div class="the-lowest-price"></div>
+                        <div class="buy">
+                            <a class="btn" href="https://mi-store.pl/product-xxx-{product_id}.html">Kup teraz</a>
                         </div>
                     </div>
+                </div>
+                    
+                    
+                    
+                ################ POCZĄTEK KARTY Z PRODUKTEM
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                ############### POCZĄTEK MAPY(WKLEJASZ W MIEJSCE GDZIE CHCESZ MIEĆ MAPĘ)
+                
+                
+                
+                <div id="container">
+                    <div id="map"></div>
+                    <div id="controls">
+                        <button id="locate-button" onclick="locateUser()">Pokaż moją lokalizację</button>
+                        <div id="nearest-location"></div>
+                    </div>
+                </div>
+                
+                
+                
+                ################ KONIEC MAPY
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 '''
 
+
+
                 product_blog += '''
-                     <script>
-						async function fetchProductData(productId, container) {
-							const url = `https://mi-store.pl/product-pol-${productId}.html`;
-							const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                ################ POCZĄTEK TEGO CO LECI ZUPEŁNIE NA SAM KONIEC KODU
+                 
+                 
+                 
+                 <script>
+                    async function fetchProductData(productId, container) {
+                        const url = `https://mi-store.pl/product-pol-${productId}.html`;
+                        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
 
-							try {
-								const response = await fetch(proxyUrl);
-								const text = await response.text();
+                        try {
+                            const response = await fetch(proxyUrl);
+                            const text = await response.text();
 
-								const parser = new DOMParser();
-								const doc = parser.parseFromString(text, 'text/html');
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(text, 'text/html');
 
-								const priceElement = doc.querySelector('strong.projector_prices__price');
-								const oldPriceElement = doc.querySelector('del.projector_prices__maxprice');
-								const lowestPriceElement = doc.querySelector('span.omnibus_price__value');
+                            const priceElement = doc.querySelector('strong.projector_prices__price');
+                            const oldPriceElement = doc.querySelector('del.projector_prices__maxprice');
+                            const lowestPriceElement = doc.querySelector('span.omnibus_price__value');
 
-								container.querySelector('.price strong').innerText = priceElement ? priceElement.innerText : '';
-								container.querySelector('.old-price').innerText = oldPriceElement ? oldPriceElement.innerText : '';
-								container.querySelector('.the-lowest-price').innerText = lowestPriceElement ? `Najniższa cena z 30 dni przed obniżką: ${lowestPriceElement.innerText}` : '';
-							} catch (error) {
-								container.querySelector('.price strong').innerText = 'Nie udało sie pobrać ceny';
-								container.querySelector('.old-price').innerText = '';
-								container.querySelector('.the-lowest-price').innerText = '';
-							}
-						}
-
-						document.querySelectorAll('.product-box').forEach(container => {
-							const productId = container.getAttribute('data-product-id');
-							fetchProductData(productId, container);
-						});
-					</script>
-                    
-                    <style>
-                        @keyframes glow {
-                            0% {
-                                box-shadow: 0 0 0 #ff6600;
-                            }
-                            50% {
-                                box-shadow: 0 0 20px #ff6600;
-                            }
-                            100% {
-                                box-shadow: 0 0 0 #ff6600;
-                            }
+                            container.querySelector('.price strong').innerText = priceElement ? priceElement.innerText : '';
+                            container.querySelector('.old-price').innerText = oldPriceElement ? oldPriceElement.innerText : '';
+                            container.querySelector('.the-lowest-price').innerText = lowestPriceElement ? `Najniższa cena z 30 dni przed obniżką: ${lowestPriceElement.innerText}` : '';
+                        } catch (error) {
+                            container.querySelector('.price strong').innerText = 'Nie udało sie pobrać ceny';
+                            container.querySelector('.old-price').innerText = '';
+                            container.querySelector('.the-lowest-price').innerText = '';
                         }
+                    }
                     
-                        @keyframes float {
-                            0% {
-                                transform: translateY(10px);
-                            }
-                            50% {
-                                transform: translateY(-10px);
-                            }
-                            100% {
-                                transform: translateY(10px);
-                            }
+                    document.querySelectorAll('.product-box').forEach(container => {
+                        const productId = container.getAttribute('data-product-id');
+                        fetchProductData(productId, container);
+                    });
+                </script>
+                
+                
+                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+                 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                 <script>
+                 document.addEventListener('DOMContentLoaded', function() {
+                        initMap();
+                    });
+                    
+                    var map;
+                    var userMarker;
+                    var nearestMarker;
+                    var nearestDistance = Infinity;
+                    var nearestLocation = null;
+                    
+                    function initMap() {
+                        map = L.map('map').setView([52.0, 19.0], 6);
+                    
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map);
+                    
+                        var locations = [
+                            {lat: 50.0875892, lon: 19.9853558, name: "Autoryzowany Salon Xiaomi Store w Krakowie<br>Centrum Handlowe Serenada, Kraków"},
+                            {lat: 51.110, lon: 17.060, name: "Autoryzowany Salon Xiaomi Store we Wrocławiu<br>Pasaż Grunwaldzki, Wrocław"},
+                            {lat: 52.406, lon: 16.933, name: "Autoryzowany Salon Xiaomi Store w Poznaniu<br>Centrum Posnania, Poznań"},
+                            {lat: 50.259, lon: 19.022, name: "Autoryzowany Salon Xiaomi Store w Katowicach<br>Galeria Katowicka, Katowice"},
+                            {lat: 54.380, lon: 18.600, name: "Autoryzowany Sklep Xiaomi Store w Gdańsku<br>Galeria Bałtycka, Gdańsk"},
+                            {lat: 54.518, lon: 18.538, name: "Autoryzowany Salon Xiaomi Store w Gdyni<br>Centrum Riviera, Gdynia"},
+                            {lat: 50.067, lon: 19.945, name: "Autoryzowany Salon Xiaomi Store w Krakowie<br>Galeria Krakowska, Kraków"},
+                            {lat: 52.291, lon: 20.935, name: "Autoryzowany Salon Xiaomi Store w Warszawie<br>Galeria Młociny, Warszawa"},
+                            {lat: 51.246, lon: 22.548, name: "Autoryzowany Salon Xiaomi Store w Lublinie<br>Centrum Handlowo-Rozrywkowe Lublin Plaza, Lublin"},
+                            {lat: 50.037, lon: 22.004, name: "Autoryzowany Salon Xiaomi Store w Rzeszowie<br>Galeria Rzeszów, Rzeszów"},
+                            {lat: 50.812, lon: 19.120, name: "Autoryzowany Salon Xiaomi Store w Częstochowie<br>Galeria Jurajska, Częstochowa"},
+                            {lat: 52.400, lon: 16.920, name: "Autoryzowany Salon Xiaomi Store w Poznaniu<br>Centrum Avenida, Poznań"},
+                            {lat: 50.320, lon: 19.090, name: "Autoryzowany Salon Xiaomi Store w Czeladzi<br>Centrum Handlowe M1, Czeladź"},
+                            {lat: 51.779, lon: 19.448, name: "Autoryzowany Salon Xiaomi Store w Łodzi<br>Centrum Handlowe Manufaktura, Łódź"}
+                        ];
+                    
+                        locations.forEach(function(location) {
+                            var marker = L.marker([location.lat, location.lon]).addTo(map);
+                            marker.bindPopup(location.name);
+                        });
+                    }
+                    
+                    function locateUser() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                var lat = position.coords.latitude;
+                                var lon = position.coords.longitude;
+                                userMarker = L.marker([lat, lon], {color: 'blue'}).addTo(map);
+                                map.setView([lat, lon], 13);
+                                userMarker.bindPopup("Twoja przybliżona lokalizacja").openPopup();
+                    
+                                var locations = [
+                                    {lat: 50.0875892, lon: 19.9853558, name: "Autoryzowany Salon Xiaomi Store w Krakowie<br>Centrum Handlowe Serenada, Kraków"},
+                                    {lat: 51.110, lon: 17.060, name: "Autoryzowany Salon Xiaomi Store we Wrocławiu<br>Pasaż Grunwaldzki, Wrocław"},
+                                    {lat: 52.406, lon: 16.933, name: "Autoryzowany Salon Xiaomi Store w Poznaniu<br>Centrum Posnania, Poznań"},
+                                    {lat: 50.259, lon: 19.022, name: "Autoryzowany Salon Xiaomi Store w Katowicach<br>Galeria Katowicka, Katowice"},
+                                    {lat: 54.380, lon: 18.600, name: "Autoryzowany Sklep Xiaomi Store w Gdańsku<br>Galeria Bałtycka, Gdańsk"},
+                                    {lat: 54.518, lon: 18.538, name: "Autoryzowany Salon Xiaomi Store w Gdyni<br>Centrum Riviera, Gdynia"},
+                                    {lat: 50.067, lon: 19.945, name: "Autoryzowany Salon Xiaomi Store w Krakowie<br>Galeria Krakowska, Kraków"},
+                                    {lat: 52.291, lon: 20.935, name: "Autoryzowany Salon Xiaomi Store w Warszawie<br>Galeria Młociny, Warszawa"},
+                                    {lat: 51.246, lon: 22.548, name: "Autoryzowany Salon Xiaomi Store w Lublinie<br>Centrum Handlowo-Rozrywkowe Lublin Plaza, Lublin"},
+                                    {lat: 50.037, lon: 22.004, name: "Autoryzowany Salon Xiaomi Store w Rzeszowie<br>Galeria Rzeszów, Rzeszów"},
+                                    {lat: 50.812, lon: 19.120, name: "Autoryzowany Salon Xiaomi Store w Częstochowie<br>Galeria Jurajska, Częstochowa"},
+                                    {lat: 52.400, lon: 16.920, name: "Autoryzowany Salon Xiaomi Store w Poznaniu<br>Centrum Avenida, Poznań"},
+                                    {lat: 50.320, lon: 19.090, name: "Autoryzowany Salon Xiaomi Store w Czeladzi<br>Centrum Handlowe M1, Czeladź"},
+                                    {lat: 51.779, lon: 19.448, name: "Autoryzowany Salon Xiaomi Store w Łodzi<br>Centrum Handlowe Manufaktura, Łódź"}
+                                ];
+                    
+                                locations.forEach(function(location) {
+                                    var distance = getDistance(lat, lon, location.lat, location.lon);
+                                    if (distance < nearestDistance) {
+                                        nearestDistance = distance;
+                                        nearestLocation = location;
+                                        if (nearestMarker) {
+                                            nearestMarker.setIcon(new L.Icon.Default());
+                                        }
+                                        nearestMarker = L.marker([location.lat, location.lon], {color: 'red'}).addTo(map);
+                                        nearestMarker.bindPopup(location.name).openPopup();
+                                    }
+                                });
+                    
+                                document.getElementById('nearest-location').innerHTML = 
+                                    `<b>Najbliższa lokalizacja:</b><br> ${nearestLocation.name} (${nearestDistance.toFixed(2)} km)`;
+                            });
+                        } else {
+                            alert("Twoja przeglądarka nie obsługuje geolokalizacji.");
                         }
+                    }
                     
+                    function getDistance(lat1, lon1, lat2, lon2) {
+                        var R = 6371;
+                        var dLat = (lat2 - lat1) * Math.PI / 180;
+                        var dLon = (lon2 - lon1) * Math.PI / 180;
+                        var a = 
+                            0.5 - Math.cos(dLat)/2 + 
+                            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                            (1 - Math.cos(dLon))/2;
+                    
+                        return R * 2 * Math.asin(Math.sqrt(a));
+                    }
+                 </script>
+                    
+                <style>
+                    @keyframes glow {
+                        0% {
+                            box-shadow: 0 0 0 #ff6600;
+                        }
+                        50% {
+                            box-shadow: 0 0 20px #ff6600;
+                        }
+                        100% {
+                            box-shadow: 0 0 0 #ff6600;
+                        }
+                    }
+                
+                    @keyframes float {
+                        0% {
+                            transform: translateY(10px);
+                        }
+                        50% {
+                            transform: translateY(-10px);
+                        }
+                        100% {
+                            transform: translateY(10px);
+                        }
+                    }
+                
+                    .product-box {
+                        display: flex;
+                        align-items: center;
+                        box-sizing: border-box;
+                        justify-content: space-between;
+                    }
+                
+                    .product-img-box {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 20px;
+                    }
+                
+                    .product-img-box img {
+                        max-width: 70%;
+                        height: auto;
+                        border-radius: 10px;
+                        animation: float 5s ease-in-out infinite;
+                        transition: transform 0.3s ease;
+                    }
+                
+                    .product-details {
+                        flex: 2;
+                        padding: 0 20px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                    }
+                    
+                    .product-details .name{
+                        font-weight: bold;
+                        padding-bottom: 10px;
+                        font-size: 18px;
+                    }
+                    
+                    .category, .old-price, .the-lowest-price{
+                        color: #888;
+                    }
+                
+                    .product-details .category,
+                    .product-details .name,
+                    .product-details .price,
+                    .product-details .buy {
+                        margin: 5px 0;
+                        text-align: left;
+                    }
+                
+                    .product-details .price {
+                        display: flex;
+                        align-items: center;
+                    }
+                
+                    .product-details .price strong {
+                        font-size: 25px;
+                        color: #F3601F;
+                        padding: 10px 0;
+                    }
+                
+                    .product-details .price .old-price {
+                        margin-left: 10px;
+                        text-decoration: line-through;
+                    }
+                
+                    .product-details .buy .btn {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #ff6600;
+                        color: #fff;
+                        border-radius: 5px;
+                        text-decoration: none;
+                        text-align: center;
+                        transition: background-color 0.3s ease, transform 0.3s ease;
+                        animation: glow 2s infinite;
+                        margin: 10px 0;
+                    }
+                
+                    .btn:hover {
+                        opacity: 0.6;
+                        transition: 0.3s;
+                    }
+                
+                    .product-details .buy .btn:hover {
+                        background-color: #e65c00;
+                        transform: translateY(-3px);
+                    }
+                    
+                    @media (max-width: 768px) {
                         .product-box {
-                            display: flex;
-                            align-items: center;
-                            box-sizing: border-box;
-                            justify-content: space-between;
-                        }
-                    
-                        .product-img-box {
-                            flex: 1;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            margin: 20px;
-                        }
-                    
-                        .product-img-box img {
-                            max-width: 70%;
-                            height: auto;
-                            border-radius: 10px;
-                            animation: float 5s ease-in-out infinite;
-                            transition: transform 0.3s ease;
-                        }
-                    
-                        .product-details {
-                            flex: 2;
-                            padding: 0 20px;
-                            display: flex;
                             flex-direction: column;
-                            justify-content: center;
-                            align-items: flex-start;
+                            align-items: center;
+                            text-align: center;
                         }
-                        
-                        .product-details .name{
-                            font-weight: bold;
-                            padding-bottom: 10px;
-                            font-size: 18px;
+                
+                        .product-img-box {
+                            margin: 10px;
                         }
-						
-						.category, .old-price, .the-lowest-price{
-							color: #888;
-						}
-                    
-                        .product-details .category,
-                        .product-details .name,
-                        .product-details .price,
-                        .product-details .buy {
-                            margin: 5px 0;
-                            text-align: left;
-                        }
-                    
-                        .product-details .price {
-                            display: flex;
+                
+                        .product-details {
+                            padding: 0 10px;
                             align-items: center;
                         }
-                    
+                
                         .product-details .price strong {
-                            font-size: 25px;
-                            color: #F3601F;
-                            padding: 10px 0;
-                        }
-                    
-                        .product-details .price .old-price {
-                            margin-left: 10px;
-                            text-decoration: line-through;
-                        }
-                    
-                        .product-details .buy .btn {
-                            display: inline-block;
-                            padding: 10px 20px;
-                            background-color: #ff6600;
-                            color: #fff;
-                            border-radius: 5px;
-                            text-decoration: none;
-                            text-align: center;
-                            transition: background-color 0.3s ease, transform 0.3s ease;
-                            animation: glow 2s infinite;
-							margin: 10px 0;
-                        }
-                    
-                        .btn:hover {
-                            opacity: 0.6;
-                            transition: 0.3s;
-                        }
-                    
-                        .product-details .buy .btn:hover {
-                            background-color: #e65c00;
-                            transform: translateY(-3px);
+                            font-size: 20px;
                         }
                         
-                        @media (max-width: 768px) {
-                            .product-box {
-                                flex-direction: column;
-                                align-items: center;
-                                text-align: center;
-                            }
-                    
-                            .product-img-box {
-                                margin: 10px;
-                            }
-                    
-                            .product-details {
-                                padding: 0 10px;
-                                align-items: center;
-                            }
-                    
-                            .product-details .price strong {
-                                font-size: 20px;
-                            }
-                            
-                            .product-details .buy .btn {
-                                margin-bottom: 20px;
-                            }
+                        .product-details .buy .btn {
+                            margin-bottom: 20px;
                         }
-                    </style>
+                    }
+                    
+                    #map {
+                        height: 500px;
+                        width: 100%;
+                        max-width: 700px;
+                        margin: 0 auto;
+                        border-radius: 5px;
+                        border: 1px solid #000;
+                        border-style: dashed;
+                    }
+                    
+                    #locate-button {
+                        font-family: 'Roboto', Arial, sans-serif;
+                        display: block;
+                        margin: 20px auto;
+                        padding: 10px 20px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        text-align: center;
+                        border: 1px solid #333;
+                        border-radius: 20px;
+                        background-color: #FF6900;
+                        color: #fff;
+                    }
+                    
+                    #locate-button:hover {
+                        box-shadow: 0 10px 10px 0 rgba(0,0,0,0.24);
+                        opacity: .9;
+                    }
+                    
+                    #nearest-location {
+                        margin-top: 20px;
+                        font-size: 16px;
+                        text-align: center;
+                        font-family: 'Roboto', Arial, sans-serif;
+                        line-height: 1.4;
+                    }
+                </style>
+                    
+                    
+                    
+                ################ KONIEC TEGO CO LECI ZUPEŁNIE NA SAM KONIEC KODU
                 '''
 
 
@@ -352,5 +546,8 @@ def chatbot(request):
 
 
 def testerka(request):
-
     return render(request, 'creator/testerka.html')
+
+
+def ninetygo(request):
+    return render(request, 'creator/ninetygo.html')

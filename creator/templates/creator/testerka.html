@@ -15,10 +15,11 @@
       margin: 0;
       border-radius: 10px;
       position: fixed;
-      bottom: 60px;
+      bottom: 90px;
       left: 20px;
       display: none;
       z-index: 1000;
+      box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 1);
     }
 
     #toggleButton {
@@ -28,11 +29,14 @@
       background-color: orange;
       color: #fff;
       border: none;
-      padding: 10px 20px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       cursor: pointer;
-      font-size: 16px;
       z-index: 1001;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     #toggleButton:hover {
@@ -50,25 +54,22 @@
       var iframe = document.getElementById('chatFrame');
       if (iframe.style.display === 'none' || iframe.style.display === '') {
         iframe.style.display = 'block';
-        this.textContent = 'Zamknij Czat';
+        this.textContent = 'Zamknij';
       } else {
         iframe.style.display = 'none';
-        this.textContent = 'Otwórz Czat';
+        this.textContent = 'Otwórz';
       }
     });
   </script>
-
 </body>
 
 <style>
-body.background-image
-{
+  body.background-image {
     background-image: url('{% static 'img/mi-background.png' %}');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
+  }
 </style>
-
 </html>

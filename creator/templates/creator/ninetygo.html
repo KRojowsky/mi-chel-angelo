@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninetygo's popups</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #openModalBtn1, #openModalBtn2 {
+            padding: 10px;
+            border-radius: 7px;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #openModalBtn1:hover, #openModalBtn2:hover {
+            opacity: 0.7;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #FEFEFE;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .modal-content img.logo {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            height: 60px;
+        }
+        .close {
+            color: #AAA;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .form-container {
+            background-color: #FFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        .form-elements {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 45px 0 0 0;
+        }
+        .form-elements > div {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            margin: 10px;
+        }
+        .form-elements label {
+            margin-bottom: 5px;
+        }
+        .form-elements input {
+            padding: 8px;
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-elements button {
+            padding: 0 20px;
+            background-color: #000;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            height: 40px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        .form-elements button:hover {
+            opacity: 0.7;
+        }
+        .images {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 100px;
+            position: relative;
+			margin-top: 20px;
+        }
+        .images img {
+            transition: transform 0.5s ease;
+        }
+        #scaledImage {
+            transform-origin: bottom center;
+        }
+        #scaledSuitcase {
+            transform-origin: bottom center;
+        }
+
+        .result-image {
+            width: 60px;
+            height: 60px;
+        }
+        .result-list {
+            width: 100%;
+			max-height: 700px;
+			overflow-y: auto;
+			margin: 0 75px 0 0 ;
+			padding: 0 5px 0 105px;
+        }
+        .result-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .result-list li {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 10px;
+			font-size: 18px;
+			padding: 5px 10px;
+			border: 1px solid #ccc;
+			border-radius: 50px;
+			height: 70px;
+		}
+        .result-list .airline-info {
+            display: flex;
+            align-items: center;
+        }
+        .result-list .airline-info img {
+			width: 200px;
+			height: auto;
+			margin: 0;
+			margin: 0 70px 10px -70px;
+			padding: 0;
+			transform: rotate(12deg) perspective(500px) translateZ(20px);
+			transition: transform 0.6s ease, box-shadow 0.6s ease;
+		}
+
+		.result-list li:hover .airline-info img {
+			transform: rotate(12deg) perspective(500px) translateZ(35px) translateX(-40px) translateY(-10px);
+		}
+
+		.result-list li:hover {
+			border: 1px solid #808080;
+			transition: .3s;
+		}
+
+        .result-list .dimensions {
+            color: #808080;
+			font-size: 15px;
+        }
+
+		p{
+			text-align: center;
+			color: #808080;
+			font-size: 12px;
+			margin: 0 15px 0 0;
+			line-height: 1.4;
+		}
+        .accepted {
+			background-color: #D4EDDA;
+			color: #155724;
+		}
+
+		.rejected {
+			background-color: #F8D7DA;
+			color: #721c24;
+		}
+
+		::-webkit-scrollbar {
+		  width: 10px;
+		}
+
+		::-webkit-scrollbar-thumb {
+		  background: #DBDBDB;
+		  border-radius: 10px;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+		  background: #808080;
+		}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="openModalBtn1">Sprawdź rzeczywiste wymiary</button>
+        <button id="openModalBtn2">Wymiary bagażu linii lotniczych</button>
+
+        <div id="myModal1" class="modal">
+            <div class="modal-content">
+                <img src="logo.jpg" alt="Logo" class="logo">
+                <span class="close" id="closeModalBtn1">&times;</span>
+                <div class="form-container">
+                    <form id="form1">
+                        <div class="form-elements">
+                            <div>
+                                <label for="heightInput">Podaj wzrost (w metrach):</label>
+                                <input type="number" id="heightInput" step="0.01" min="1" max="2.5">
+                            </div>
+                            <div>
+                                <label for="suitcaseHeightInput">Wysokość walizki (w cm):</label>
+                                <input type="number" id="suitcaseHeightInput" step="0.1" min="10" max="100">
+                            </div>
+                            <button type="submit">Sprawdź</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="images">
+                    <img id="scaledImage" src="posture.jpg" alt="Obrazek człowieka" width="295" height="845">
+                    <img id="scaledSuitcase" src="walizka.jpg" alt="Obrazek walizki" width="170" height="310">
+                </div>
+				<p><i>Prezentowana proporcja jest orientacyjna i może minimalnie odbiegać od rzeczywistych wymiarów.<br>Proporcje mogą różnić się w zależności od budowy ciała oraz konstrukcji walizki.</i></p>
+            </div>
+        </div>
+
+
+        <div id="myModal2" class="modal">
+            <div class="modal-content">
+				<img src="logo.jpg" alt="Logo" class="logo">
+                <span class="close" id="closeModalBtn2">&times;</span>
+                <div class="form-container">
+                    <form id="form2">
+                        <div class="form-elements">
+                            <div>
+                                <label for="widthInput">Szerokość (w cm):</label>
+                                <input type="number" id="widthInput" step="0.1" min="1" max="100">
+                            </div>
+                            <div>
+                                <label for="lengthInput">Długość (w cm):</label>
+                                <input type="number" id="lengthInput" step="0.1" min="1" max="100">
+                            </div>
+							<div>
+                                <label for="heightInput2">Wysokość (w cm):</label>
+                                <input type="number" id="heightInput2" step="0.1" min="1" max="100">
+                            </div>
+                            <button type="submit">Sprawdź</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="result-list" id="resultList">
+                    <ul></ul>
+					<p><i>Wymiary bagażu dla poszczególnych linii lotniczych aktualne na dzień 30 lipca 2024 roku. <br> Przed podróżą zalecamy dodatkowo zweryfikować aktualne przepisy bezpośrednio u przewoźnika.</i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const airlines = [
+            { name: 'LOT Polish Airlines', maxWidth: 55, maxLength: 40, maxHeight: 23 },
+            { name: 'Wizzair', maxWidth: 55, maxLength: 40, maxHeight: 23 },
+            { name: 'Ryanair', maxWidth: 55, maxLength: 40, maxHeight: 20 },
+            { name: 'easyJet', maxWidth: 56, maxLength: 45, maxHeight: 25 },
+            { name: 'Lufthansa', maxWidth: 55, maxLength: 40, maxHeight: 25 },
+			{ name: 'Air France', maxWidth: 55, maxLength: 35, maxHeight: 25 },
+			{ name: 'KLM', maxWidth: 55, maxLength: 35, maxHeight: 25 },
+			{ name: 'Qatar Airways', maxWidth: 50, maxLength: 37, maxHeight: 25 },
+			{ name: 'American Airlines', maxWidth: 56, maxLength: 38, maxHeight: 23 },
+			{ name: 'Aer Lingus', maxWidth: 55, maxLength: 40, maxHeight: 24 },
+			{ name: 'Air Canada', maxWidth: 55, maxLength: 40, maxHeight: 24 },
+			{ name: 'British Airways', maxWidth: 56, maxLength: 45, maxHeight: 25 },
+			{ name: 'Germanwings', maxWidth: 55, maxLength: 40, maxHeight: 23 },
+			{ name: 'Turkish Airlines', maxWidth: 55, maxLength: 40, maxHeight: 23 },
+			{ name: 'UIA', maxWidth: 55, maxLength: 40, maxHeight: 20 },
+        ];
+
+        let modal1 = document.getElementById("myModal1");
+        let modal2 = document.getElementById("myModal2");
+        let openModalBtn1 = document.getElementById("openModalBtn1");
+        let openModalBtn2 = document.getElementById("openModalBtn2");
+        let closeModalBtn1 = document.getElementById("closeModalBtn1");
+        let closeModalBtn2 = document.getElementById("closeModalBtn2");
+
+        openModalBtn1.onclick = function() {
+            modal1.style.display = "flex";
+        }
+
+        openModalBtn2.onclick = function() {
+            modal2.style.display = "flex";
+        }
+
+        closeModalBtn1.onclick = function() {
+            modal1.style.display = "none";
+        }
+
+        closeModalBtn2.onclick = function() {
+            modal2.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal1) {
+                modal1.style.display = "none";
+            }
+            if (event.target == modal2) {
+                modal2.style.display = "none";
+            }
+        }
+
+        document.getElementById('form1').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const height = parseFloat(document.getElementById('heightInput').value);
+            const suitcaseHeight = parseFloat(document.getElementById('suitcaseHeightInput').value);
+
+            const personImage = document.getElementById('scaledImage');
+            const suitcaseImage = document.getElementById('scaledSuitcase');
+
+            const baseHeight = 1.65;
+            const personScale = height / baseHeight * 0.8;
+            personImage.style.transform = `scale(${personScale})`;
+
+            const suitcaseBaseHeight = 30;
+            const suitcaseScale = suitcaseHeight / suitcaseBaseHeight * 0.7;
+            suitcaseImage.style.transform = `scale(${suitcaseScale})`;
+        });
+
+        document.getElementById('form2').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const width = parseFloat(document.getElementById('widthInput').value);
+            const length = parseFloat(document.getElementById('lengthInput').value);
+            const height = parseFloat(document.getElementById('heightInput2').value);
+
+            const resultList = document.getElementById('resultList').querySelector('ul');
+            resultList.innerHTML = '';
+
+            airlines.forEach(airline => {
+                const listItem = document.createElement('li');
+
+                const airlineInfo = document.createElement('div');
+                airlineInfo.classList.add('airline-info');
+
+                const airlineLogo = document.createElement('img');
+                airlineLogo.src = airline.name + '.png';
+                airlineLogo.alt = airline.name;
+
+                const airlineText = document.createElement('div');
+                airlineText.innerHTML = `<strong>${airline.name}</strong><br><span class="dimensions">${airline.maxWidth} x ${airline.maxLength} x ${airline.maxHeight} cm</span>`;
+
+                airlineInfo.appendChild(airlineLogo);
+                airlineInfo.appendChild(airlineText);
+
+                listItem.appendChild(airlineInfo);
+
+                const statusIcon = document.createElement('img');
+                if (width <= airline.maxWidth && length <= airline.maxLength && height <= airline.maxHeight) {
+                    statusIcon.src = 'check.jpg';
+                    listItem.classList.add('accepted');
+                } else {
+                    statusIcon.src = 'cross.jpg';
+                    listItem.classList.add('rejected');
+                }
+                statusIcon.classList.add('result-image');
+
+                listItem.appendChild(statusIcon);
+                resultList.appendChild(listItem);
+            });
+        });
+
+        window.onload = function() {
+            modal1.style.display = "none";
+            modal2.style.display = "none";
+        }
+    </script>
+</body>
+</html>

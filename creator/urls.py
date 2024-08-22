@@ -12,4 +12,5 @@ urlpatterns = [
 
     path('chatbot/', views.chatbot, name='chatbot'),
     path('testerka/', views.testerka, name='testerka'),
+    path('ninetygo/', views.ninetygo, name='ninetygo'),
 ]

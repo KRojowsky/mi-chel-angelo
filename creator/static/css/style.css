@@ -8,6 +8,10 @@ body {
     align-items: center;
 }
 
+h1{
+    color: #fff;
+}
+
 .page-content {
     font-family: Tahoma, sans-serif;
     display: flex;
@@ -291,53 +295,11 @@ ul li{
 }
 
 .html-editor, .blog-editor {
-    margin: 0 0 50px 20px;
+    margin: 0 0 50px 0;
 }
 
-.html-editor h2, .blog-editor h2{
-    color: #FFF;
-}
 
-.html-editor textarea {
-    width: 400px;
-    height: 450px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #e3e3e3;
-    resize: vertical;
-}
-
-.blog-editor textarea {
-    width: 400px;
-    height: 450px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #e3e3e3;
-    resize: vertical;
-}
-
-.file-content {
-    margin: 0 auto;
-    color: #FFF;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    overflow-x: auto;
-}
-
-.file-content textarea {
-    height: 500px;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    resize: vertical;
-}
+textarea { height: auto; }
 
 .message {
     margin-top: 10px;

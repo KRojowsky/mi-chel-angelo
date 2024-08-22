@@ -92,27 +92,29 @@
             </form>
         </div>
         {% endif %}
-        {% if product_html %}
+    </div>
+
+    {% if product_blog %}
+    <h1>BLOG:</h1>
+    <div class="blog-editor">
+        <form method="post" action="{% url 'add_to_file' %}">
+            {% csrf_token %}
+            <textarea rows="50" cols="100" id="product_blog" name="product_blog">{{ product_blog }}</textarea>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if product_html %}
+    <h1>LANDING</h1>
         <div class="html-editor">
             <form method="post" action="{% url 'add_to_file' %}">
                 {% csrf_token %}
-                <textarea id="product_html" name="product_html">{{ product_html }}</textarea>
+                <textarea rows="30" cols="100" id="product_html" name="product_html">{{ product_html }}</textarea>
+                <br>
                 <button type="submit">Dodaj</button>
             </form>
         </div>
-        {% endif %}
-
-
-        {% if product_blog %}
-        <div class="blog-editor">
-            <form method="post" action="{% url 'add_to_file' %}">
-                {% csrf_token %}
-                <textarea id="product_blog" name="product_blog">{{ product_blog }}</textarea>
-            </form>
-        </div>
-        {% endif %}
-
-    </div>
+    {% endif %}
 
     {% if file_content %}
         <div class="file-content">
